@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-export default function DefaultPage() {
+export default function Protected({wallet, children}) {
+  if(wallet) {
+    return children;
+  }
+  
   // const finalMessage = "Please Login to Proceed";
   // const [message, setMessage] = useState("");
   // useEffect(()=>{
@@ -22,3 +26,4 @@ export default function DefaultPage() {
     </main>
   );
 }
+

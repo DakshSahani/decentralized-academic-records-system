@@ -1,31 +1,23 @@
-import { Toaster } from "react-hot-toast";
-import ConnectModal from "../components/ConnectModal";
-import Navbar from "../components/Navbar";
-import { useEffect, useState } from "react";
-import DefaultPage from "./DefaultPage";
-import LoggedInHomePage from "./LoggedInHomePage";
+import { Link } from "react-router-dom";
 
-export default function HomePage({wallet, setWallet}) 
-{
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [page, setPage] = useState("");
-  const updateWallet = (wallet) => {
-    setWallet(wallet);
-  };
-  const showConnectModal = (value) => {
-    setIsModalOpen(value);
-  };
-
+export default function HomePage({wallet}) {
   return (
-    <div className="app">
-      <Navbar updateWallet={updateWallet} wallet={wallet} showConnectModal={showConnectModal} />
-      <Toaster />
-      <ConnectModal
-        isModalOpen={isModalOpen}
-        showConnectModal={showConnectModal}
-        updateWallet={updateWallet}
-      />
-        <LoggedInHomePage wallet={wallet}/>
-    </div>
-  );
+    <main className="w-full h-full flex justify-evenly items-center">
+      <Link 
+        className="p-10 border border-black rounded-2xl flex flex-col justify-around gap-8 hover:cursor-pointer"
+        to="/view"
+      >
+          <img src="./view.png" alt="upload" />
+          <h3>View Records</h3>
+      </Link>
+
+      <Link 
+        className="p-10 border border-black rounded-2xl flex flex-col justify-around gap-8 hover:cursor-pointer"
+        to="/upload"
+      >
+          <img src="./upload.png" alt="upload" />
+          <h3>Upload Records</h3>
+      </Link>
+    </main>
+  )
 }
