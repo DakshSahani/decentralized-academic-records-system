@@ -8,7 +8,7 @@ import Protected from "./components/Protected";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  const [wallet, setWallet] = useState({});
+  const [wallet, setWallet] = useState();
 
   return(
     <BrowserRouter>
