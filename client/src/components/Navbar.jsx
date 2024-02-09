@@ -37,7 +37,7 @@ const Navbar = ({ updateWallet, showConnectModal, wallet }) => {
           <div></div>
         </div>
         <div className="navbar__logo" href="/">
-          Academic Record System
+          <span className="text-[#1D4ED8]">Academic Record</span> System
         </div>
       </div>
       <ul
@@ -57,9 +57,11 @@ const Navbar = ({ updateWallet, showConnectModal, wallet }) => {
           className="connect-button"
           onClick={wallet ? () => updateWallet() : () => showConnectModal(true)}
         >
-          {wallet
-            ? `Disconnect: ${wallet && truncateStr(wallet.getAddress(), 11)}`
-            : "Connect"}
+          {
+            wallet && wallet.getAddress
+            ? `Disconnect: ${wallet && truncateStr(wallet?.getAddress(), 11)}`
+            : "Connect"
+          }
         </button>
       </ul>
     </nav>

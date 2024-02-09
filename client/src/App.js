@@ -1,31 +1,13 @@
-import { Toaster } from "react-hot-toast";
 import "./App.css";
-import ConnectModal from "./components/ConnectModal";
-import Navbar from "./components/Navbar";
 import { useState } from "react";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  const [wallet, setWallet] = useState();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wallet, setWallet] = useState(true);
 
-  const updateWallet = (wallet) => {
-    setWallet(wallet);
-  };
-  const showConnectModal = (value) => {
-    setIsModalOpen(value);
-  };
-
-  return (
-    <div className="app">
-      <Navbar updateWallet={updateWallet} wallet={wallet} showConnectModal={showConnectModal} />
-      <Toaster />
-      <ConnectModal
-        isModalOpen={isModalOpen}
-        showConnectModal={showConnectModal}
-        updateWallet={updateWallet}
-      />
-    </div>
-  );
+  return(
+    <HomePage wallet={wallet} setWallet={setWallet} />
+  )
 }
 
 export default App;
