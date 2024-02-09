@@ -41,7 +41,11 @@ endpoint invokable AddRecord!(studentName String, studentId U64)->(addedRecord R
 
 // Add a course to an academic record
 endpoint invokable AddCourse!(recordId U64, courseName String, grade U64):
-
+    if grade > 100:
+        throw "grade must be less than 100"
+    if grade < 0:
+        throw "grade must be greater than 0"
+        
     onlyAdmin()
 
     var recordLen U64
