@@ -8,7 +8,7 @@ import LoggedInHomePage from "./LoggedInHomePage";
 export default function HomePage({wallet, setWallet}) 
 {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [page, setPage] = useState("");
   const updateWallet = (wallet) => {
     setWallet(wallet);
   };
@@ -25,13 +25,7 @@ export default function HomePage({wallet, setWallet})
         showConnectModal={showConnectModal}
         updateWallet={updateWallet}
       />
-
-      {
-        wallet ?
         <LoggedInHomePage wallet={wallet}/>
-        :
-        <DefaultPage />
-      }
     </div>
   );
 }
