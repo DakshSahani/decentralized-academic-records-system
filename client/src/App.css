@@ -138,6 +138,7 @@ header {
 /* Navbar */
 
 .navbar {
+  background-color: white;
   position: sticky;
   padding: 0 2rem;
   top: 0;
@@ -145,7 +146,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid hsl(219, 9%, 45%, 0.25);
+  border-bottom: 1.5px solid hsla(215, 8%, 30%, 0.25);
+  z-index: 5;
 }
 
 .nav__header {

@@ -27,8 +27,8 @@ export default function Protected({wallet, children}) {
           {
             message.split(" ").map((word, indx)=>{
               if(indx === 1) 
-                return <span className="text-[#1D4ED8]">{word + " "}</span>
-              return <span>{word + " "}</span>
+                return <span className="text-[#1D4ED8]" key={indx}>{word + " "}</span>
+              return <span key={indx}>{word + " "}</span>
             })
           }
         </div>
