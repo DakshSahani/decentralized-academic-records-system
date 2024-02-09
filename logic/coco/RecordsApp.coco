@@ -1,0 +1,32 @@
+coco RecordsApp
+
+state persistent:
+    records []Record
+    admin Address
+    student Address
+
+class Record:
+    field id U64
+    field content String
+    field title String
+
+endpoint deployer Init!():
+    mutate Address(Sender) -> RecordsApp.State.admin
+
+
+// Only building for admin uploads for ver_1
+func onlyAdmin():
+    observe admin <- RecordsApp.State.admin:
+        if(Address(Sender) != admin):
+            throw "Not an Admin"
+
+
+
+endpoint invokable AddRecord!(content String) -> (addedRecord Record):
+
+    onlyAdmin()
+
+    mutate records <- RecordsApp.State.records:
+        var newRecord = Record{id: len(records), content: content, title: title}
+        records = append(records, newRecord)
+        yeild addedRecord newRecord

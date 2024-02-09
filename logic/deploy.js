@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { VoyageProvider, Wallet, LogicFactory } = require("js-moi-sdk");
-const DRedditManifest = "Require MANIFEST FILE with path";
+const recordAppManifest = require("./coco/recordsapp.json");
 
 // ------- Update with your Mnemonic ------------------ //
 const MNEMONIC = process.env.MNEMONIC;
@@ -19,17 +19,28 @@ const constructWallet = async () => {
   return wallet;
 };
 
-const deployLogic = async () => {
+const deployRecordsAppLogic = async () => {
   // getting wallet To sign and send the ix to the network
   const wallet = await constructWallet();
 
   // Create logic instance using Logic factory
-
+  const recordsAppLogic = new LogicFactory(recordAppManifest, wallet)
   // Deploy the logic get ixResponse
+  const ixResponse = await recordsAppLogic.deploy("Init!")
+  console.log("-----Deploying Logic-----")
+  console.log(ixResponse)
+
 
   // await ixResponse.wait() for ixReceipt
 
-  // Get the logic_id from ixReceipt and start making ixn from client app
+  const ixReceipt = await ixResponse.wait();
+  console.log("-----Deployed Logic Successfully-----")
+  console.log(ixReceipt);
+
+
+   // Get the logic_id from ixReceipt and start making ixn from client app
+  console.log("-----Logic ID-----");
+  console.log(ixReceipt.extra_data.logic_id)
 };
 
-deployLogic();
+deployRecordsAppLogic();
