@@ -1,6 +1,7 @@
+import AllStudent from "../components/AllStudent";
 
 export default function UploadPage() {
   return (
-    <div>UploadPage</div>
+    <AllStudent />
   )
 }
