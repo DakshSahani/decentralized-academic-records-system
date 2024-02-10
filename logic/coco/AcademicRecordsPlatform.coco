@@ -8,19 +8,19 @@ state persistent:
 
 // Declare Record Class
 class Record:
-    field recordId U64             // Unique identifier for each academic record
-    field studentName String       // Name of the student
-    field studentId U64            // Student ID
-    field courses Map[String]U64         // Array containing courses and grades
+    field recordId U64              // Unique identifier for each academic record
+    field studentName String        // Name of the student
+    field studentId U64             // Student ID
+    field courses Map[String]U64    // Map containing courses(string) => grades (unsinged int)
+
 
 ////////////////////////
 // Mutate Endpoints
-endpoint deployer Init!():
-    // mutate Address(Sender) -> AcademicRecordsPlatform.State.owner
-    pass
-///////////////////////
+////////////////////////
 
-// Note: "!" required as suffix for mutate endpoints
+endpoint deployer Init!():
+    mutate Address(Sender) -> AcademicRecordsPlatform.State.admin
+
 
 // Only building for admin uploads for ver_1
 func onlyAdmin():
@@ -28,19 +28,24 @@ func onlyAdmin():
         if(Address(Sender) != admin):
             throw "Not an Admin"
 
-    // Add a new academic record
+// Add a new academic record
 endpoint invokable AddRecord!(studentName String, studentId U64)->(addedRecord Record):
-    // Create a new record with the provided student name and ID
     // Yield the added record to the caller
     onlyAdmin()
-
+    
+    //Check if studentName is valid
+    if studentName=="":
+        throw "Student Name is not valid"
+    
     mutate records <- AcademicRecordsPlatform.State.records:
         var newRecord = Record{recordId: len(records), studentName: studentName, studentId:studentId}
         records = append(records, newRecord)
         yield addedRecord newRecord
 
+
 // Add a course to an academic record
 endpoint invokable AddCourse!(recordId U64, courseName String, grade U64):
+    //check if grade is valid
     if grade > 100:
         throw "grade must be less than 100"
     if grade < 0:
@@ -48,22 +53,21 @@ endpoint invokable AddCourse!(recordId U64, courseName String, grade U64):
         
     onlyAdmin()
 
+    // Check if the record exists
     var recordLen U64
     observe records <- AcademicRecordsPlatform.State.records:
         recordLen = len(records)
     
-    // Check if the record exists
     if  recordId >= recordLen:
         throw "Record Not Found"
     
+    //adding or updating the course grade
     mutate records <- AcademicRecordsPlatform.State.records:
         records[recordId].courses[courseName] = grade
 
 ////////////////////////
 // Observe Endpoints
 ///////////////////////
-
-// Note: No "!" required as suffix for observe endpoints
 
 // Get all academic records
 endpoint invokable GetRecords()->(records []Record):
