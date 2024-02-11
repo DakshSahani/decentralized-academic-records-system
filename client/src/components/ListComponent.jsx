@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 export default function ListComponent({heading, id, to, ...other}) {
   return (
     <Link
-        className='w-[90vw] p-6 m-10 border border-gray-500 rounded-3xl flex justify-between items-center hover:cursor-pointer transform transition-transform duration-300 hover:scale-[1.03]'
+        className='w-full p-4 m-6 border border-gray-500 rounded-2xl flex justify-between items-center hover:cursor-pointer transform transition-transform duration-300 hover:scale-[1.03]'
         to={to}
         {...other}
     >
-            <p className="text-2xl">{heading}</p>
+            <p className="text-xl">{heading}</p>
             <div className="flex items-center gap-2">
                 <p className="text-gray-500">
                     id

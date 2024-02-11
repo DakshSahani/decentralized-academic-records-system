@@ -2,21 +2,28 @@ import ListComponent from "./ListComponent"
 
 export default function AllStudent() {
   return (
-    <div className="w-full flex flex-col items-center">
-        <h2 className="m-0 text-[#]">SELECT STUDENT</h2>
-        <ul>
-            {
-                students.map((student, indx)=>
+    <div className="w-[98%] flex justify-between px-[30px] relative">
+        <div>
+            <div className="pt-[2vh] sticky left-2 top-32 flex flex-col gap-16">
+                <h3 className="m-0 ">Select Student</h3>
+                <img className="md:w-[30vw] lg:w-[35vw] " src="/select-student.svg" alt="select student" />
+            </div>
+        </div>
+        <div className="w-[55%] flex flex-col items-center">
+            <ul className="w-full">
+                {
+                    students.map((student, indx)=>
                     <ListComponent 
-                        heading={student.studentName}
-                        id={student.studentId}
-                        key={student.studentId} 
-                        onClick={()=>{}}
-                        to={`/upload/${student.studentId}`}
-                    />
-                )
-            }
-        </ul>
+                            heading={student.studentName}
+                            id={student.studentId}
+                            key={student.studentId} 
+                            onClick={()=>{}}
+                            to={`/upload/${student.studentId}`}
+                        />
+                    )
+                }
+            </ul>
+        </div>
     </div>
   )
 }

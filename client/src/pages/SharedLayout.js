@@ -15,7 +15,7 @@ export default function SharedLayout({wallet, setWallet})
   };
 
   return (
-    <div className="app">
+    <div className="app h-full">
       <Navbar updateWallet={updateWallet} wallet={wallet} showConnectModal={showConnectModal} />
       
       <Toaster />
@@ -25,8 +25,9 @@ export default function SharedLayout({wallet, setWallet})
         showConnectModal={showConnectModal}
         updateWallet={updateWallet}
       />
-      
-      <Outlet />
+      <main className="h-full">
+        <Outlet />
+      </main>
     </div>
   );
 }
