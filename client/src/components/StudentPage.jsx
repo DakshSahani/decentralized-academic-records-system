@@ -16,7 +16,7 @@ export default function StudentPage() {
 
 
   return (
-    <div className="w-full h-full flex items-center justify-around">
+    <div className="pt-10 w-full h-full flex items-center justify-around">
         <form className="border border-gray-600 rounded-3xl p-8 py-10 flex flex-col gap-8">
             
             <div className="flex flex-col md:flex-row justify-between">
