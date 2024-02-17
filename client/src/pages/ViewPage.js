@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function ViewPage() {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     id: "",
     name: ""
@@ -8,13 +10,13 @@ export default function ViewPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    navigate(`/view/${data.id}`);
   }
   const handleChange = (e) => {
     const prop = e.target.name
     setData(prev => ({
       ...prev,
-      prop:e.target.value
+      [prop] :e.target.value
     }))
   }
 
@@ -33,6 +35,7 @@ export default function ViewPage() {
             <input 
               className="w-[60%] border-2 border-[#68707D40]"
               name="id"
+              value={data.id}
               onChange={handleChange}
             />
           </div>
@@ -41,6 +44,7 @@ export default function ViewPage() {
             <input 
               className="w-[60%] border-2 border-[#68707D40]"
               name="name"
+              value={data.name}
               onChange={handleChange}
             />
           </div>
