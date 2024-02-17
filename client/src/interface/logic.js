@@ -17,26 +17,48 @@ const baseWallet = await constructBaseWallet();
 ///////////////////////
 
 const addRecord = async (wallet, studentName, studentId)=>{
-
+  const logicDriver = await getLogicDriver(logicId, wallet);
+  const ix = await logicDriver.routines.addRecord(studentId, studentName);
+  const {addedRecord} = await ix.result();
+  return addedRecord
 }
 
 const addCourse = async (wallet, recordId, courseName, courseGrade)=>{
-
+  const logicDriver = await getLogicDriver(logicId, wallet);
+  const ix = await logicDriver.routines.addCourse(recordId, courseName, courseGrade);
+  await ix.wait();
 }
 
 ////////////////////////
 // Observe/Read Calls
 ///////////////////////
 
-const getRecords = async ()=>{
+// We can get primitive state variables like this
+const getOwner = async () => {
+  const logicDriver = await getLogicDriver(logicId, baseWallet);
+  return logicDriver.persistentState.get("admin");
+};
 
+const getRecords = async ()=>{
+  const logicDriver = await getLogicDriver(logicId, baseWallet)
+  const {records} = await logicDriver.routines.GetRecords();
+  return records
 }
 
 const logic = {
   addRecord,
   addCourse,
   getRecords,
+  getOwner,
   
 };
+
+// const logicDriver = await getLogicDriver(logicId, wallet);
+// const ix = await logicDriver.routines.addCourse(recordId, courseName, courseGrade);
+// //if to return something
+// const {data} = await ix.result()
+// return data
+// //if not to return
+// await ix.wait()
 
 export default logic;
