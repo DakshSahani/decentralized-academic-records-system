@@ -58,6 +58,7 @@ const getOwner = async () => {
 
 const getRecords = async ()=>{
   const logicDriver = await getLogicDriver(logicId, baseWallet)
+  //FIX: not sure about "await" below
   const {records} = await logicDriver.routines.GetRecords();
   return records
 }
