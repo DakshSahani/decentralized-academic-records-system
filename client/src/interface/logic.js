@@ -16,12 +16,27 @@ const baseWallet = await constructBaseWallet();
 // Mutate/Write Calls
 ///////////////////////
 
+const addRecord = async (wallet, studentName, studentId)=>{
+
+}
+
+const addCourse = async (wallet, recordId, courseName, courseGrade)=>{
+
+}
+
 ////////////////////////
 // Observe/Read Calls
 ///////////////////////
 
+const getRecords = async ()=>{
+
+}
+
 const logic = {
-  // Add Call Methods
+  addRecord,
+  addCourse,
+  getRecords,
+  
 };
 
 export default logic;

@@ -50,7 +50,11 @@ export default function ViewPage() {
             type="submit"
             onClick={handleSubmit}
           >
+<<<<<<< HEAD
             Submit
+=======
+            Show Record
+>>>>>>> 282bda73369079935eaaf10c91ae9e3d0f9183cd
           </button>
         </form>
       </div>
