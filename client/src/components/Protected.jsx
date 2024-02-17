@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useAppContext } from "../context/Context";
 
-export default function Protected({wallet, children}) {
+export default function Protected({children}) {
+  const { wallet } = useAppContext();
+
   const finalMessage = "Please Login to Proceed. ";
   const [message, setMessage] = useState(" ");
   useEffect(()=>{
-    if(message.length == finalMessage.length) {
+    if(message.length === finalMessage.length) {
       setMessage(message.substring(0, message.length-1));
     }
     const intervalId = setTimeout(()=>{
