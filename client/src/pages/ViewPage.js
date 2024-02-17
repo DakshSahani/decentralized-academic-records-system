@@ -21,7 +21,7 @@ export default function ViewPage() {
   }
 
   return (
-    <div className="px-[6vw] w-full flex pt-12 items-center justify-between">
+    <div className="px-[6vw] w-full flex items-center justify-between">
       <div>
         <img src="/enter-student-details.svg" alt="Student Details" className="w-[30vw]"/>
       </div>
