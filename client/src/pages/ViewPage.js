@@ -50,7 +50,7 @@ export default function ViewPage() {
             type="submit"
             onClick={handleSubmit}
           >
-            Send Message
+            Show Record
           </button>
         </form>
       </div>
