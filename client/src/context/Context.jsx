@@ -19,6 +19,8 @@ export const ContextProvider = ({children})=>{
     const setError = (message) => {
         if(!message) message = "Something went wrong";
 
+        setTimeout(()=>resetError(), 3000);
+
         dispatch({
             type: SET_ERROR,
             payload: { 
