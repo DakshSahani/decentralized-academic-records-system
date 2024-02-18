@@ -8,7 +8,7 @@ export default function ListComponent({heading, id, to,add, ...other}) {
         {...other}
     >
             <p className="text-xl">{heading}</p>
-            {add?<img src="./icons8-add.png"/>:
+            {add?<img src="./icons8-add.png" alt="add-icon"/>:
             <div className="flex items-center gap-2">
                 <p className="text-gray-500">
                     id

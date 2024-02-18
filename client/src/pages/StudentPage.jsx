@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 export default function StudentPage() {
   const { studentId: id } = useParams();
-  const filtered = students.filter((s)=>s.studentId == id);
+  const filtered = students.filter((s)=>s.studentId === id);
   const name = filtered?.length > 0 ? filtered[0].studentName : "Name not found";
 
   const [formData, setFormData] = useState({

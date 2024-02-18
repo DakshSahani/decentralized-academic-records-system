@@ -81,12 +81,13 @@ export const ContextProvider = ({children})=>{
             const res = await logic.getRecords();
             console.log(res);
             setRecords(res);
+            resetLoading();
             return res;
         } catch(err) {
             setError(err.message || err);
+            resetLoading();
             return null;
         }
-        resetLoading();
     }
     const addStudent = async ()=>{ // Adding student
         setLoading();
