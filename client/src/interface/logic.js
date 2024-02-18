@@ -35,14 +35,14 @@ const baseWallet = await constructBaseWallet();   // Going to change in future.
 
 const addRecord = async (wallet, studentName, studentId)=>{
   const logicDriver = await getLogicDriver(logicId, wallet);
-  const ix = await logicDriver.routines.addRecord(studentId, studentName);
+  const ix = await logicDriver.routines.AddRecord(studentName, studentId);
   const {addedRecord} = await ix.result();
   return addedRecord
 }
 
 const addCourse = async (wallet, recordId, courseName, courseGrade)=>{
   const logicDriver = await getLogicDriver(logicId, wallet);
-  const ix = await logicDriver.routines.addCourse(recordId, courseName, courseGrade);
+  const ix = await logicDriver.routines.AddCourse(recordId, courseName, courseGrade);
   await ix.wait();
 }
 

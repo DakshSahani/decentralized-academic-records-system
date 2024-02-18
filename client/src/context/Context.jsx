@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "./reducer";
 import { 
     SET_ERROR,
@@ -14,7 +14,7 @@ const context = React.createContext();
 export const initialStates = {
     error: false,
     errorMessage: undefined,
-    wallet: {},
+    wallet: undefined,
     loading: false,
     records: [],
 }
@@ -42,7 +42,7 @@ export const ContextProvider = ({children})=>{
         });
     }
 
-    const isSet = ({name, value})=>{
+    const isSet = (name, value)=>{
         if(!value || value===""){
             setError(`${name} is not defined.`);
             return false;
@@ -54,6 +54,8 @@ export const ContextProvider = ({children})=>{
             type: SET_WALLET,
             payload: {wallet,}
         })
+
+        // Wallet to store in local storage ???
     };
 
     const setLoading = ()=>{
@@ -79,20 +81,25 @@ export const ContextProvider = ({children})=>{
         setLoading();
         try {
             const res = await logic.getRecords();
-            console.log(res);
+            console.log("Result = ", res);
             setRecords(res);
             resetLoading();
             return res;
         } catch(err) {
+            console.log(err);
             setError(err.message || err);
             resetLoading();
             return null;
         }
     }
-    const addStudent = async ()=>{ // Adding student
+    const addStudent = async ({studentId, studentName})=>{ // Adding student
         setLoading();
+        if(!isSet("student name", studentName)) {
+            return null;
+        }
         try {
-            const res = await logic.addRecord();
+            if(!states.wallet) throw new Error("Not Login!");
+            const res = await logic.addRecord(states.wallet, studentName, studentId);
             console.log(res);
             return res;
         } catch(err) {  
@@ -101,7 +108,8 @@ export const ContextProvider = ({children})=>{
         resetLoading();
     }
     const addCourse = async({courseName, grade, studentId})=>{
-        if(!isSet(grade) || !isSet(courseName) || !isSet(studentId)) return;
+        if(!isSet("grade", grade) || !isSet("course-name", courseName) || !isSet("student-id", studentId)) 
+            return;
 
         setLoading();
         try {
@@ -124,6 +132,12 @@ export const ContextProvider = ({children})=>{
         }
     }
 
+    useEffect(()=>{
+        getRecords().then((res) =>{
+            console.log("Output has received!", res);
+        })
+    }, [states.wallet]);
+    
     return (
         <context.Provider
             value={{
