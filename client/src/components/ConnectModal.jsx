@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Input, Modal } from "antd";
 import { Wallet, validateMnemonic, VoyageProvider } from "js-moi-sdk";
 import { toastError } from "../utils/toastWrapper";
+import { useAppContext } from "../context/Context";
 
 const provider = new VoyageProvider("babylon");
 const account = "m/44'/6174'/7020'/0/0"; // 0th account path derivation
 
-const ConnectModal = ({ isModalOpen, updateWallet, showConnectModal }) => {
+const ConnectModal = ({ isModalOpen, showConnectModal }) => {
+  const { setWallet } = useAppContext();
   const [mnemonic, setMnemonic] = useState("");
   const [error, setError] = useState("");
 
@@ -18,7 +20,7 @@ const ConnectModal = ({ isModalOpen, updateWallet, showConnectModal }) => {
 
       const wallet = new Wallet(provider);
       await wallet.fromMnemonic(mnemonic, account);
-      updateWallet(wallet);
+      setWallet(wallet);
 
       setError("");
       showConnectModal(false);
