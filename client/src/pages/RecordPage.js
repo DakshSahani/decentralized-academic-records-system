@@ -18,20 +18,38 @@ export default function RecordPage(){
   }
 
   return ( 
-    <div>
-      <div>
-        <h1>{record.studentId}</h1>
-        <h1>{record.studentName}</h1>
+    <div className="w-[90%]">
+      <div className="mb-4">
+        <h2>Student Id : {record.studentId}</h2>
+        <h2>Student Name: {record.studentName}</h2>
       </div>
-      <div>
-        {
-          Object.keys(record.courses).map(course => (
-            <div className="">
-              <h1 className="inline">{course}</h1>
-              <h1 className="">{record.courses[course]}</h1>
-            </div>
-          ))
-        }
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+              <tr>
+                  <th scope="col" className="px-6 py-3">
+                      S.No.
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                      Courses
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                      Grades
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              {
+                Object.keys(record.courses).map((course, ind) => (
+                  <tr className="odd:bg-white even:bg-gray-50 border-b">
+                    <td className="px-6 py-4">{ind+1}</td>
+                    <td classNameM="px-6 py-4">{course}</td>
+                    <td className="px-6 py-4">{record.courses[course]}</td>
+                </tr>
+                ))
+              }
+          </tbody>
+        </table>
       </div>
     </div>
   );

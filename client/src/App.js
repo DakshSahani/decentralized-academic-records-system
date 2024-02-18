@@ -5,7 +5,8 @@ import UploadPage from "./pages/UploadPage";
 import ViewPage from "./pages/ViewPage";
 import Protected from "./components/Protected";
 import HomePage from "./pages/HomePage";
-import StudentPage from "./components/StudentPage";
+import StudentPage from "./pages/StudentPage";
+import AddStudentPage from "./pages/AddStudentPage";
 import RecordPage from "./pages/RecordPage";
 import { ContextProvider } from "./context/Context";
 
@@ -32,6 +33,7 @@ function App() {
               } 
             >
               <Route index element={<UploadPage />} />
+              <Route path="add" element={<AddStudentPage />} />
               <Route path=":studentId" element={<StudentPage />} />
             </Route>
 

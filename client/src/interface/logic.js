@@ -53,7 +53,7 @@ const addCourse = async (wallet, recordId, courseName, courseGrade)=>{
 // We can get primitive state variables like this
 const getOwner = async () => {
   const logicDriver = await getLogicDriver(logicId, baseWallet);
-  return logicDriver.persistentState.get("admin");
+  return (await logicDriver.persistentState.get("admin"));
 };
 
 const getRecords = async ()=>{

@@ -25,7 +25,7 @@ export default function SharedLayout({wallet, setWallet})
         showConnectModal={showConnectModal}
         updateWallet={updateWallet}
       />
-      <main className="min-h-[84vh] flex items-center">
+      <main className="min-h-[84vh] flex items-center justify-center">
         <Outlet />
       </main>
     </div>

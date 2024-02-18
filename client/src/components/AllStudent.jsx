@@ -11,6 +11,11 @@ export default function AllStudent() {
         </div>
         <div className="w-[55%] flex flex-col items-center">
             <ul className="w-full">
+                <ListComponent
+                    heading="add student"
+                    to={'/upload/add'}
+                    add
+                />
                 {
                     students.map((student, indx)=>
                     <ListComponent 
