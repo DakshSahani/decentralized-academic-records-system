@@ -26,7 +26,9 @@ const deployRecordsAppLogic = async () => {
   // Create logic instance using Logic factory
   const recordsAppLogic = new LogicFactory(recordAppManifest, wallet)
   // Deploy the logic get ixResponse
-  const ixResponse = await recordsAppLogic.deploy("Init!")
+  const ixResponse = await recordsAppLogic.deploy("Init!", {
+    fuelLimit: 5000,
+  })
   console.log("-----Deploying Logic-----")
   console.log(ixResponse)
 

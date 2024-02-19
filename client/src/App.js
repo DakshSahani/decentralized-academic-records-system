@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import StudentPage from "./pages/StudentPage";
 import AddStudentPage from "./pages/AddStudentPage";
 import RecordPage from "./pages/RecordPage";
+import NotFoundPage from "./pages/NotFoundPage"
 import { ContextProvider } from "./context/Context";
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
             </Route>
 
           </Route>
-          <Route path="*" element={<div>404 Error</div>} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </ContextProvider>

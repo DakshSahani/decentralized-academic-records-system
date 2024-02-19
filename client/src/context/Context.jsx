@@ -132,12 +132,12 @@ export const ContextProvider = ({children})=>{
         }
     }
 
-    useEffect(()=>{
-        getRecords().then((res) =>{
-            console.log("Output has received!", res);
-        })
-    }, [states.wallet]);
-    
+    // useEffect(()=>{
+    //     getRecords().then((res) =>{
+    //         console.log("Output has received!", res);
+    //     })
+    // }, [states.wallet]);
+
     return (
         <context.Provider
             value={{
