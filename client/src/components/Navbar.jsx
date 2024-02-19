@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { truncateStr } from "../utils/truncateStr";
+// import { truncateStr } from "../utils/truncateStr";
 import { useAppContext } from "../context/Context";
 
 const Navbar = ({ showConnectModal }) => {
-  const { wallet, setWallet } = useAppContext();
+  const { wallet, resetWallet} = useAppContext();
   const [toggleValue, setToggle] = useState(false);
 
   const navRef = useRef(null);
@@ -57,11 +57,14 @@ const Navbar = ({ showConnectModal }) => {
         </a>
         <button
           className="connect-button"
-          onClick={wallet ? () => setWallet() : () => showConnectModal(true)}
+          onClick={wallet ? () => resetWallet() : () => showConnectModal(true)}
         >
           {
-            wallet && wallet.getAddress
-            ? `Disconnect: ${wallet && truncateStr(wallet?.getAddress(), 11)}`
+            wallet 
+            // && wallet.getAddress
+            ? 
+            // `Disconnect: ${wallet && truncateStr(wallet?.getAddress(), 11)}`
+            "Disconnect"
             : "Connect"
           }
         </button>

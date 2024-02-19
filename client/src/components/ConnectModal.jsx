@@ -20,7 +20,8 @@ const ConnectModal = ({ isModalOpen, showConnectModal }) => {
 
       const wallet = new Wallet(provider);
       await wallet.fromMnemonic(mnemonic, account);
-      setWallet(wallet);
+      console.log("walley = ", wallet)
+      setWallet(wallet, true);
 
       setError("");
       showConnectModal(false);

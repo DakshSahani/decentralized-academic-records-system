@@ -3,6 +3,7 @@ import reducer from "./reducer";
 import { 
     SET_ERROR,
     SET_WALLET, 
+    RESET_WALLET, 
     SET_LOADING, 
     SET_RECORDS, 
 } from "./action";
@@ -49,14 +50,23 @@ export const ContextProvider = ({children})=>{
         } 
         return true;
     }
-    const setWallet = (wallet)=>{
+    const setWallet = (wallet, addToLocalStorage=false)=>{
+        console.log(wallet);
+        if(addToLocalStorage) 
+            localStorage.setItem("wallet", JSON.stringify(wallet));
+
         dispatch({
             type: SET_WALLET,
             payload: {wallet,}
         })
-
         // Wallet to store in local storage ???
     };
+    const resetWallet = ()=>{
+        localStorage.removeItem("wallet");
+        dispatch({
+            type: RESET_WALLET,
+        })
+    }
 
     const setLoading = ()=>{
         dispatch({
@@ -77,6 +87,8 @@ export const ContextProvider = ({children})=>{
             payload: {records,}
         })
     }
+
+
     const getRecords = async ()=>{
         setLoading();
         try {
@@ -92,6 +104,7 @@ export const ContextProvider = ({children})=>{
             return null;
         }
     }
+
     const addStudent = async ({studentId, studentName})=>{ // Adding student
         setLoading();
         if(!isSet("student name", studentName)) {
@@ -107,6 +120,7 @@ export const ContextProvider = ({children})=>{
         }
         resetLoading();
     }
+
     const addCourse = async({courseName, grade, studentId})=>{
         if(!isSet("grade", grade) || !isSet("course-name", courseName) || !isSet("student-id", studentId)) 
             return;
@@ -132,11 +146,17 @@ export const ContextProvider = ({children})=>{
         }
     }
 
-    // useEffect(()=>{
-    //     getRecords().then((res) =>{
-    //         console.log("Output has received!", res);
-    //     })
-    // }, [states.wallet]);
+    useEffect(()=>{
+        if(!states.wallet) {
+            const localWallet = JSON.parse(localStorage.getItem("wallet"));
+            if(localWallet) {
+                setWallet(localWallet);
+            }
+        }
+        // getRecords().then((res) =>{
+        //     console.log("Output has received!", res);
+        // })
+    }, [states.wallet]);
 
     return (
         <context.Provider
@@ -145,6 +165,7 @@ export const ContextProvider = ({children})=>{
                 setError,
                 resetError,
                 setWallet,
+                resetWallet, 
                 setLoading,
                 resetLoading,
                 getRecords,
