@@ -1,14 +1,17 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import SharedLayout from "./pages/SharedLayout";
-import UploadPage from "./pages/UploadPage";
-import ViewPage from "./pages/ViewPage";
-import Protected from "./components/Protected";
-import HomePage from "./pages/HomePage";
-import StudentPage from "./pages/StudentPage";
-import AddStudentPage from "./pages/AddStudentPage";
+import {
+  SharedLayout, 
+  UploadPage, 
+  ViewPage, 
+  ProtectedPage, 
+  HomePage, 
+  StudentPage, 
+  AddStudentPage, 
+  // RecordPage, 
+  NotFoundPage, 
+}  from "./pages";
 import RecordPage from "./pages/RecordPage";
-import NotFoundPage from "./pages/NotFoundPage"
 import { ContextProvider } from "./context/Context";
 
 function App() {
@@ -28,9 +31,9 @@ function App() {
             <Route 
               path="upload"
               element={
-                <Protected>
+                <ProtectedPage>
                   <Outlet />
-                </Protected>
+                </ProtectedPage>
               } 
             >
               <Route index element={<UploadPage />} />

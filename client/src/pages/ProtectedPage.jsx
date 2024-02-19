@@ -1,7 +1,7 @@
 import { useAppContext } from "../context/Context";
-import AutoTypeText from "./AutoTypeText";
+import { AutoTypeText } from "../components";
 
-export default function Protected({children}) {
+export default function ProtectedPage({children}) {
   const { wallet } = useAppContext(); 
   
   if(wallet) {

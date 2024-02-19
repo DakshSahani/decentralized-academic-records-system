@@ -1,4 +1,4 @@
-import AllStudent from "../components/AllStudent";
+import { AllStudent } from "../components";
 
 export default function UploadPage() {
   return (
