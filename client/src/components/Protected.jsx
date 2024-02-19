@@ -1,43 +1,20 @@
-import { useEffect, useState } from "react";
 import { useAppContext } from "../context/Context";
+import AutoTypeText from "./AutoTypeText";
 
 export default function Protected({children}) {
-  const { wallet } = useAppContext();
-
-  const finalMessage = "Please Login to Proceed. ";
-  const [message, setMessage] = useState(" ");
-  useEffect(()=>{
-    if(message.length === finalMessage.length) {
-      setMessage(message.substring(0, message.length-1));
-    }
-    const intervalId = setTimeout(()=>{
-      setMessage(message.substring(0, message.length-1) + finalMessage.charAt(message.length - 1) + "|");
-    }, 50);
-    
-    return ()=>{
-      clearTimeout(intervalId);
-    }
-  }, [message]);  
+  const { wallet } = useAppContext(); 
   
   if(wallet) {
     return children;
   }
 
   return (
-    <main className="w-full h-full flex flex-col gap-12 justify-around items-center">
+    <section className="w-full h-full flex flex-col gap-12 justify-around items-center">
       <div className="w-fit min-w-[30vw]">
-        <div className="text-4xl font-bold">
-          {
-            message.split(" ").map((word, indx)=>{
-              if(indx === 1) 
-                return <span className="text-[#1D4ED8]" key={indx}>{word + " "}</span>
-              return <span key={indx}>{word + " "}</span>
-            })
-          }
-        </div>
+        <AutoTypeText text="Please Login to Proceed." className="pl-8 text-4xl font-bold text-center w-full" focusIndx={1}/>
       </div>
-      <img src="/please-login.svg" alt="Please Login" className="w-[30vw]"/>
-    </main>
+      <img src="/please-login.svg" alt="Please Login" className="w-[75vw] sm:w-[45vw] md:w-[35vw]"/>
+    </section>
   );
 }
 

@@ -1,6 +1,7 @@
 import { 
     SET_ERROR,
     SET_WALLET, 
+    RESET_WALLET, 
     SET_LOADING,
     SET_RECORDS, 
 } from "./action";
@@ -24,6 +25,13 @@ export default function reducer(states, action) {
             wallet: action.payload.wallet,
         }
     }
+    if(action.type === RESET_WALLET) {
+        return {
+            ...states,
+            wallet: undefined,
+        };
+    }
+    
     if(action.type === SET_LOADING) {
         return {
             ...states,

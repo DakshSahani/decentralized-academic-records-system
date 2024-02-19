@@ -1,16 +1,24 @@
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import ConnectModal from "../components/ConnectModal";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 
 export default function SharedLayout() {
-  const { wallet, setWallet } = useAppContext();
+  const { wallet, setWallet, error, errorMessage} = useAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showConnectModal = (value) => {
     setIsModalOpen(value);
   };
+
+  useEffect(()=>{
+    if(error) {
+      toast(errorMessage, {
+        duration: 3000,
+      });
+    }
+  }, [error])
 
   return (
     <div className="app min-h-[100vh]">
