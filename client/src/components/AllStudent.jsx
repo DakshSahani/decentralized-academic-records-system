@@ -1,6 +1,9 @@
 import ListComponent from "./ListComponent"
+import { useAppContext } from "../context/Context"
 
 export default function AllStudent() {
+  const students = useAppContext().records
+
   return (
     <div className="w-[98%] flex justify-between px-[30px] relative">
         <div>
@@ -12,7 +15,7 @@ export default function AllStudent() {
         <div className="w-[55%] flex flex-col items-center">
             <ul className="w-full">
                 <ListComponent
-                    heading="add student"
+                    heading="Add student +"
                     to={'/upload/add'}
                     add
                 />
