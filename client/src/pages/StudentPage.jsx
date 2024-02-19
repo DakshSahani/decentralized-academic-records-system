@@ -1,10 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import {useAppContext} from "../context/Context"
 
 export default function StudentPage() {
   const { studentId: id } = useParams();
-  const filtered = students.filter((s)=>s.studentId === id);
-  const name = filtered?.length > 0 ? filtered[0].studentName : "Name not found";
+  const {records:students, addCourse, loading} = useAppContext()
+
+  const [student ,setStudent] = useState({})
+  useEffect(()=>{
+      setStudent(students.find((s)=>s.studentId === id*1))
+  },[])
 
   const [formData, setFormData] = useState({
     courseName: "",
@@ -14,14 +19,23 @@ export default function StudentPage() {
     setFormData({...formData, [e.target.name]: e.target.value})
   }
 
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    console.log(student)
+    await addCourse(student.recordId, formData.courseName, formData.grade)
+    setFormData({
+        courseName:"",
+        grade:0
+    })
+  }
 
   return (
     <div className="w-full h-full flex items-center justify-around">
         <form className="border border-gray-600 rounded-3xl p-8 py-10 flex flex-col gap-8">
             
             <div className="flex flex-col md:flex-row justify-between">
-                <p className="text-2xl ">{name}</p>
-                <p className="text-[#1D4ED8]">{id}</p>
+                <p className="text-2xl ">{student?.studentName}</p>
+                <p className="text-[#1D4ED8]">{student?.studentId}</p>
             </div>
 
             <div className="flex gap-8">
@@ -48,10 +62,14 @@ export default function StudentPage() {
             </div>
             <button 
                 type="submit" 
-                onClick={()=>{}}
+                onClick={handleSubmit}
                 className="p-2 bg-[#1D4ED8] rounded text-white text-semibold text-lg"
+                disabled={loading}
+                style={{
+                    opacity:(loading?0.5:1),
+                    cursor:(loading?"not-allowed":"pointer")}}
             >
-                Submit
+                {loading?"O":"Submit"}
             </button>
         </form>
         
@@ -59,8 +77,6 @@ export default function StudentPage() {
     </div>
   )
 }
-
-
 
 const students = [
     {

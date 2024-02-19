@@ -1,21 +1,14 @@
 import { useParams } from "react-router-dom";
+import {useAppContext} from "../context/Context"
 
 
 export default function RecordPage(){
   const { studentId } = useParams();
-
-  // Temporary record
-  const record = {
-    recordId:123,
-    studentId:2,
-    studentName:"Aakash Sharma",
-    courses:{
-      "Mathematics I":80,
-      "Analysis of Algorithms":90,
-      "Computer Networks":98,
-      "Operating System":88
-    }
+  const records = useAppContext().records
+  if(!records){
+    return <h1>NOT Found</h1>
   }
+  const record = records.find(el=>el.studentId===studentId*1)
 
   return ( 
     <div className="w-[90%]">
@@ -41,9 +34,9 @@ export default function RecordPage(){
           <tbody>
               {
                 Object.keys(record.courses).map((course, ind) => (
-                  <tr className="odd:bg-white even:bg-gray-50 border-b">
+                  <tr key={ind} className="odd:bg-white even:bg-gray-50 border-b">
                     <td className="px-6 py-4">{ind+1}</td>
-                    <td classNameM="px-6 py-4">{course}</td>
+                    <td className="px-6 py-4">{course}</td>
                     <td className="px-6 py-4">{record.courses[course]}</td>
                 </tr>
                 ))

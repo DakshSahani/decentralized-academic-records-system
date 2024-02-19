@@ -44,7 +44,7 @@ export const ContextProvider = ({children})=>{
     }
 
     const isSet = (name, value)=>{
-        if(!value || value===""){
+        if(value==undefined || value===""){
             setError(`${name} is not defined.`);
             return false;
         } 
@@ -113,7 +113,6 @@ export const ContextProvider = ({children})=>{
         try {
             if(!states.wallet) throw new Error("Not Login!");
             const res = await logic.addRecord(states.wallet, studentName, studentId);
-            console.log(res);
             return res;
         } catch(err) {  
             setError(err.message || err);
@@ -121,25 +120,17 @@ export const ContextProvider = ({children})=>{
         resetLoading();
     }
 
-    const addCourse = async({courseName, grade, studentId})=>{
-        if(!isSet("grade", grade) || !isSet("course-name", courseName) || !isSet("student-id", studentId)) 
+    const addCourse = async(recordId, courseName, grade)=>{
+        if(!isSet("grade", grade) || !isSet("course-name", courseName) || !isSet("record-id", recordId)) 
             return;
-
         setLoading();
         try {
-            if(states.records === undefined) {
-                await getRecords();
-            }
-            let record = states.records.find(r=>r.studentId === studentId);
-            if(!record) {
-                throw new Error("No such student found!");
-            }
-
-            const res = await logic.addCourse(states.wallet, record.recordId, courseName, grade);
+            const res = await logic.addCourse(states.wallet,recordId, courseName, grade);
             console.log(res);
             resetLoading();
             return res;
         } catch(err) {
+            console.log(err)
             setError(err.message || err);
             resetLoading();
             return null;
@@ -153,9 +144,15 @@ export const ContextProvider = ({children})=>{
                 setWallet(localWallet);
             }
         }
-        // getRecords().then((res) =>{
-        //     console.log("Output has received!", res);
-        // })
+        getRecords().then((res) =>{
+            dispatch({
+                type:SET_RECORDS,
+                payload:{
+                    records:res
+                }
+            })
+            
+        }).catch((err)=>console.log(err))
     }, [states.wallet]);
 
     return (
