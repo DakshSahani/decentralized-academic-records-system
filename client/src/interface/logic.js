@@ -22,17 +22,6 @@ const baseWallet = await constructBaseWallet();   // Going to change in future.
 // Mutate/Write Calls
 ///////////////////////
 
-// const changeOwner = async (wallet, newOwner) => {
-//   const logicDriver = await getLogicDriver(logicId, wallet);
-//   const ixResponse = await logicId.routines.
-//   // const {} = await isResponse.wait() -> in case if no output.
-//   // .wait() return a recite
-//   const {
-//     /* returned by backend */ 
-//     temp
-//   } = await ixResponse.result();
-// }
-
 const addRecord = async (wallet, studentName, studentId)=>{
   const logicDriver = await getLogicDriver(logicId, wallet);
   const ix = await logicDriver.routines.AddRecord(studentName, studentId);
@@ -51,9 +40,10 @@ const addCourse = async (wallet, recordId, courseName, courseGrade)=>{
 ///////////////////////
 
 // We can get primitive state variables like this
-const getOwner = async () => {
-  const logicDriver = await getLogicDriver(logicId, baseWallet);
-  return (await logicDriver.persistentState.get("admin"));
+const isAdmin = async (wallet) => {
+  const logicDriver = await getLogicDriver(logicId, wallet);
+  const {result} = await logicDriver.routines.isAdmin();
+  return result
 };
 
 const getRecords = async ()=>{
@@ -67,8 +57,7 @@ const logic = {
   addRecord,
   addCourse,
   getRecords,
-  getOwner,
-  
+  isAdmin
 };
 
 // const logicDriver = await getLogicDriver(logicId, wallet);

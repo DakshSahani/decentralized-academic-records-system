@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function ListComponent({heading, id, to,add, ...other}) {
   return (
     <Link
-        className={`w-full p-4 m-6 border ${add?"bg-[#2563eb]":"border-gray-500"} rounded-2xl flex justify-between items-center hover:cursor-pointer transform transition-transform duration-300 hover:scale-[1.03]`}
+        className={`w-full p-2 m-3 border flex ${add?"bg-[#2563eb] justify-center":"border-gray-500 justify-between"} rounded-2xl items-center hover:cursor-pointer transform transition-transform duration-300 hover:scale-[1.03]`}
         to={to}
         {...other}
     >

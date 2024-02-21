@@ -1,18 +1,22 @@
 import { useParams } from "react-router-dom";
 import {useAppContext} from "../context/Context"
+import NotFoundPage from "./NotFoundPage";
+import {Loader} from "../components"
 
 
 export default function RecordPage(){
   const { studentId } = useParams();
   const {records, loading} = useAppContext()
+
   if(loading){
-    return <h1>Loading...</h1>
+    return <Loader loading={loading} size={"2rem"} color="black"/>
   }
   if(records.length == 0){
-    return <h1>NOT Found</h1>
+    return <NotFoundPage />
   }
+
   const record = records?.find(el=>el.studentId===studentId*1)
-  console.log("courses", record?.courses)
+  
   const getCourses = ()=>{
     const res = []
     let i = 0
@@ -28,14 +32,14 @@ export default function RecordPage(){
   }
 
   return ( 
-    <div className="w-[90%]">
-      <div className="mb-4">
-        <h2>Student Id : {record.studentId}</h2>
-        <h2>Student Name: {record.studentName}</h2>
+    <div className="w-[90%] border border-black rounded-xl p-8">
+      <div className="mb-8">
+        <h3>Student Id : {record.studentId}</h3>
+        <h3>Student Name: {record.studentName}</h3>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+        <table className="w-full text-md text-left rtl:text-right text-gray-500">
+          <thead className="text-md text-gray-700 uppercase bg-gray-50">
               <tr>
                   <th scope="col" className="px-6 py-3">
                       S.No.

@@ -6,6 +6,7 @@ import StudentPage from "./StudentPage";
 import UploadPage from "./UploadPage";
 import ViewPage from "./ViewPage";
 import ProtectedPage from "./ProtectedPage";
+import ViewStudentPage from "./ViewStudentPage"
 export {
     AddStudentPage,
     HomePage, 
@@ -15,4 +16,5 @@ export {
     UploadPage, 
     ViewPage, 
     ProtectedPage, 
+    ViewStudentPage
 };

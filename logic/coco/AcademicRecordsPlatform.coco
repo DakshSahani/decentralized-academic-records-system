@@ -69,6 +69,10 @@ endpoint invokable AddCourse!(recordId U64, courseName String, grade U64):
 // Observe Endpoints
 ///////////////////////
 
+endpoint invokable isAdmin() ->(result Bool): 
+    observe admin <- AcademicRecordsPlatform.State.admin:
+        yield result (Address(Sender) == admin)
+     
 // Get all academic records
 endpoint invokable GetRecords()->(records []Record):
     // Observe records from the persistent state and yield

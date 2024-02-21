@@ -33,18 +33,18 @@ export default function ViewPage() {
 
       {/* Input form */}
       <div className="sm:w-[50%] md:w-[35%] lg:w-[40%] border border-gray-500 rounded-2xl p-8 py-12 flex flex-col items-between">
-        <h4>Please enter the student details</h4>
+        <h4 className="w-full text-center">Please enter the student id</h4>
         <form onSubmit={handleSubmit} className="pt-10 flex flex-col gap-3 items-center justify-center">
           <div className="flex w-full justify-between">
             <label>Student Id</label>
             <input 
-              className="w-[60%] border-2 border-[#68707D40]"
+              className="w-[70%] border-2 border-[#68707D40]"
               name="id"
               value={data.id}
               onChange={handleChange}
             />
           </div>
-          <div className="flex w-full justify-between">
+          {/* <div className="flex w-full justify-between">
             <label>Student Name</label>
             <input 
               className="w-[60%] border-2 border-[#68707D40]"
@@ -52,7 +52,7 @@ export default function ViewPage() {
               value={data.name}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
 
           <button
             className="connect-button mt-8"

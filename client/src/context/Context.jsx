@@ -51,9 +51,9 @@ export const ContextProvider = ({children})=>{
         return true;
     }
     const setWallet = (wallet, addToLocalStorage=false)=>{
-        console.log(wallet);
-        if(addToLocalStorage) 
-            localStorage.setItem("wallet", JSON.stringify(wallet));
+        // console.log(wallet);
+        // if(addToLocalStorage) 
+        //     localStorage.setItem("wallet", JSON.stringify(wallet));
 
         dispatch({
             type: SET_WALLET,
@@ -62,7 +62,7 @@ export const ContextProvider = ({children})=>{
         // Wallet to store in local storage ???
     };
     const resetWallet = ()=>{
-        localStorage.removeItem("wallet");
+        // localStorage.removeItem("wallet");
         dispatch({
             type: RESET_WALLET,
         })
@@ -105,19 +105,20 @@ export const ContextProvider = ({children})=>{
         }
     }
 
-    const addStudent = async ({studentId, studentName})=>{ // Adding student
+    const addStudent = async (studentName, studentId)=>{ // Adding student
         setLoading();
-        if(!isSet("student name", studentName)) {
+        if(!isSet("student name", studentName) || !isSet("student-id", studentId)) {
             return null;
         }
         try {
             if(!states.wallet) throw new Error("Not Login!");
             const res = await logic.addRecord(states.wallet, studentName, studentId);
+            resetLoading();
             return res;
         } catch(err) {  
             setError(err.message || err);
+            resetLoading();
         }
-        resetLoading();
     }
 
     const addCourse = async(recordId, courseName, grade)=>{
@@ -138,12 +139,6 @@ export const ContextProvider = ({children})=>{
     }
 
     useEffect(()=>{
-        if(!states.wallet) {
-            const localWallet = JSON.parse(localStorage.getItem("wallet"));
-            if(localWallet) {
-                setWallet(localWallet);
-            }
-        }
         getRecords().then((res) =>{
             dispatch({
                 type:SET_RECORDS,
@@ -151,7 +146,6 @@ export const ContextProvider = ({children})=>{
                     records:res
                 }
             })
-            
         }).catch((err)=>console.log(err))
     }, [states.wallet]);
 

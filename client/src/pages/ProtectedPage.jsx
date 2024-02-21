@@ -2,8 +2,8 @@ import { useAppContext } from "../context/Context";
 import { AutoTypeText } from "../components";
 
 export default function ProtectedPage({children}) {
-  const { wallet } = useAppContext(); 
-  
+  const { wallet } = useAppContext();
+
   if(wallet) {
     return children;
   }

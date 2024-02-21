@@ -502,6 +502,44 @@
     {
       "ptr": 14,
       "deps": [
+        9
+      ],
+      "kind": "routine",
+      "data": {
+        "name": "isAdmin",
+        "kind": "invokable",
+        "accepts": [],
+        "returns": [
+          {
+            "slot": 0,
+            "label": "result",
+            "type": "bool"
+          }
+        ],
+        "executes": {
+          "bin": [
+            128,
+            0,
+            1,
+            115,
+            1,
+            73,
+            1,
+            1,
+            70,
+            0,
+            1,
+            0,
+            5,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "ptr": 15,
+      "deps": [
         7,
         8,
         9
