@@ -8,6 +8,7 @@ export default function ViewPage() {
 
   useEffect(()=>{
     getRecords();
+    // eslint-disable-next-line
   },[])
   
   const [data, setData] = useState({

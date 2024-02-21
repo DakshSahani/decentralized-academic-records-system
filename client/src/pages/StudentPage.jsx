@@ -10,6 +10,7 @@ export default function StudentPage() {
   const [student ,setStudent] = useState({})
   useEffect(()=>{
       setStudent(students.find((s)=>s.studentId === id*1))
+      // eslint-disable-next-line
   },[])
 
   const [formData, setFormData] = useState({
@@ -22,7 +23,6 @@ export default function StudentPage() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
-    console.log(student)
     await addCourse(student.recordId, formData.courseName, formData.grade)
     setFormData({
         courseName:"",

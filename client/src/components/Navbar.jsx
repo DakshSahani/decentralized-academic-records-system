@@ -23,6 +23,7 @@ const Navbar = ({ showConnectModal }) => {
     return () => {
       window.removeEventListener("scroll", closeNavOnScroll);
     };
+    // eslint-disable-next-line
   }, [toggleValue]);
 
   return (

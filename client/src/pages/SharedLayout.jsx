@@ -18,6 +18,7 @@ export default function SharedLayout() {
         duration: 3000,
       });
     }
+    // eslint-disable-next-line
   }, [error])
 
   return (
