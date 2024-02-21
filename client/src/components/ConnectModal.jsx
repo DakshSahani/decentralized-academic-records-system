@@ -15,6 +15,7 @@ const ConnectModal = ({ isModalOpen, showConnectModal }) => {
   const [loading, setLoading] = useState(false);
 
   const handleConnect = async (mnemonic) => {
+    if(loading) return
     setLoading(true)
     try {
       if (!validateMnemonic(mnemonic)) {
@@ -23,7 +24,6 @@ const ConnectModal = ({ isModalOpen, showConnectModal }) => {
 
       const wallet = new Wallet(provider);
       await wallet.fromMnemonic(mnemonic, account);
-      console.log("walley = ", wallet)
       const res = await logic.isAdmin(wallet)
       if(res){
         setWallet(wallet, true);

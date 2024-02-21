@@ -9,7 +9,6 @@ export default function UploadPage() {
   
   useEffect(()=>{
     setLocalRecords(records);
-    console.log("records", records)
   },[records]);
 
   const searchByName = (name)=>{

@@ -93,12 +93,10 @@ export const ContextProvider = ({children})=>{
         setLoading();
         try {
             const res = await logic.getRecords();
-            console.log("Result = ", res);
             setRecords(res);
             resetLoading();
             return res;
         } catch(err) {
-            console.log(err);
             setError(err.message || err);
             resetLoading();
             return null;
@@ -127,11 +125,9 @@ export const ContextProvider = ({children})=>{
         setLoading();
         try {
             const res = await logic.addCourse(states.wallet,recordId, courseName, grade);
-            console.log(res);
             resetLoading();
             return res;
         } catch(err) {
-            console.log(err)
             setError(err.message || err);
             resetLoading();
             return null;
