@@ -2,7 +2,7 @@ import ListComponent from "./ListComponent"
 import { useAppContext } from "../context/Context"
 
 export default function AllStudent() {
-  const students = useAppContext().records
+  const {loading, records} = useAppContext()
 
   return (
     <div className="w-[98%] flex justify-between px-[30px] relative">
@@ -12,6 +12,7 @@ export default function AllStudent() {
                 <img className="md:w-[30vw] lg:w-[35vw] " src="/select-student.svg" alt="select student" />
             </div>
         </div>
+        {loading?<h1>Loading...</h1>:
         <div className="w-[55%] flex flex-col items-center">
             <ul className="w-full">
                 <ListComponent
@@ -20,7 +21,7 @@ export default function AllStudent() {
                     add
                 />
                 {
-                    students.map((student, indx)=>
+                    records?.map((student, indx)=>
                     <ListComponent 
                             heading={student.studentName}
                             id={student.studentId}
@@ -31,7 +32,7 @@ export default function AllStudent() {
                     )
                 }
             </ul>
-        </div>
+        </div>}
     </div>
   )
 }

@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from "../context/Context";
 
 export default function ViewPage() {
   const navigate = useNavigate();
+  const {getRecords} = useAppContext();
+  useEffect(()=>{
+    getRecords();
+  },[])
   const [data, setData] = useState({
     id: "",
     name: ""

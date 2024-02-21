@@ -4,11 +4,28 @@ import {useAppContext} from "../context/Context"
 
 export default function RecordPage(){
   const { studentId } = useParams();
-  const records = useAppContext().records
-  if(!records){
+  const {records, loading} = useAppContext()
+  if(loading){
+    return <h1>Loading...</h1>
+  }
+  if(records.length == 0){
     return <h1>NOT Found</h1>
   }
-  const record = records.find(el=>el.studentId===studentId*1)
+  const record = records?.find(el=>el.studentId===studentId*1)
+  console.log("courses", record?.courses)
+  const getCourses = ()=>{
+    const res = []
+    let i = 0
+    for(let key of record?.courses.keys()){
+      res.push(
+      <tr key={key} className="odd:bg-white even:bg-gray-50 border-b">
+        <td className="px-6 py-4">{++i}</td>
+        <td className="px-6 py-4">{key}</td>
+        <td className="px-6 py-4">{record.courses.get(key)}</td>
+      </tr>)
+    }
+    return res
+  }
 
   return ( 
     <div className="w-[90%]">
@@ -33,13 +50,7 @@ export default function RecordPage(){
           </thead>
           <tbody>
               {
-                Object.keys(record.courses).map((course, ind) => (
-                  <tr key={ind} className="odd:bg-white even:bg-gray-50 border-b">
-                    <td className="px-6 py-4">{ind+1}</td>
-                    <td className="px-6 py-4">{course}</td>
-                    <td className="px-6 py-4">{record.courses[course]}</td>
-                </tr>
-                ))
+                getCourses()
               }
           </tbody>
         </table>
