@@ -16,8 +16,8 @@ export default function SearchFilter({classNames, searchFunc, label, ...rest}){
     }
     const optimizedDebounce = useMemo(()=>debounce(), []);
 
-    return <div className={`flex justify-between gap-4 ${classNames}`}>
-        <label className="whitespace-nowrap min-w-40 text-xl">{label}</label>
+    return <div className={`flex justify-between gap-2 md:gap-4 ${classNames}`}>
+        <label className="whitespace-nowrap min-w-28 md:min-w-40 text-md md:text-xl">{label}</label>
         <Input
             style={{ border: "1px solid black" }}
             onChange={optimizedDebounce}

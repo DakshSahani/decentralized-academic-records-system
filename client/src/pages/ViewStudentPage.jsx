@@ -11,7 +11,7 @@ export default function RecordPage(){
   if(loading){
     return <Loader loading={loading} size={"2rem"} color="black"/>
   }
-  if(records.length == 0){
+  if(records.length === 0){
     return <NotFoundPage />
   }
 

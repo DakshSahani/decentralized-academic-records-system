@@ -79,7 +79,7 @@ export default function StudentPage() {
             </form>
         </div>
         
-        <img src="/enter-grade.svg" alt="Enter Grade" className="w-[30vw]"/>
+        <img src="/enter-grade.svg" alt="Enter Grade" className="w-[30vw] hidden md:block"/>
     </div>
   )
 }

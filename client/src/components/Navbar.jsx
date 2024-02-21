@@ -39,7 +39,7 @@ const Navbar = ({ showConnectModal }) => {
           <div></div>
         </div>
         <div className="navbar__logo" href="/">
-          <span className="text-[#1D4ED8]">Academic Record</span> System
+          <span className="text-[#1D4ED8]  leading-[0.25rem]">Academic Record</span> System
         </div>
       </div>
       <ul
