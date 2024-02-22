@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import {useAppContext} from "../context/Context"
 import { Loader } from "../components";
+import CoursePage from "./CoursesPage"
 
 export default function StudentPage() {
   const { studentId: id } = useParams();
@@ -31,9 +32,9 @@ export default function StudentPage() {
   }
 
   return (
-    <div className="w-full h-full flex items-center justify-around">
+    <div className="w-full h-full flex items-center justify-between gap-8 px-8">
         <div>
-            <h2 className="">Add Course</h2>
+            <h2 className="">Add New Course</h2>
             <form className="border border-gray-600 rounded-3xl p-8 py-10 flex flex-col gap-6">
                 <div className="flex flex-col md:flex-row justify-between">
                     <p className="text-2xl ">{student?.studentName}</p>
@@ -79,7 +80,7 @@ export default function StudentPage() {
             </form>
         </div>
         
-        <img src="/enter-grade.svg" alt="Enter Grade" className="w-[30vw] hidden md:block"/>
+        <CoursePage />
     </div>
   )
 }

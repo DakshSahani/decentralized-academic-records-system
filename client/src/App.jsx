@@ -8,7 +8,7 @@ import {
   HomePage, 
   StudentPage, 
   AddStudentPage, 
-  ViewStudentPage,
+  CoursesPage,
   NotFoundPage, 
 }  from "./pages";
 import { ContextProvider } from "./context/Context";
@@ -24,7 +24,7 @@ function App() {
 
             <Route path="view" element={<Outlet />} >
               <Route index element={<ViewPage />} />
-              <Route path=":studentId" element={<ViewStudentPage />} />
+              <Route path=":studentId" element={<CoursesPage showStudentName/>} />
             </Route>
 
             <Route 
