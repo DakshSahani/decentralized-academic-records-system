@@ -51,7 +51,7 @@ export default function UploadPage() {
                     <ListComponent 
                       heading={student.studentName}
                       id={student.studentId}
-                      key={student.studentId} 
+                      key={indx} 
                       onClick={()=>{}}
                       to={`/upload/${student.studentId}`}
                     />

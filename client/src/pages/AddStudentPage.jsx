@@ -1,13 +1,17 @@
 import { useState } from "react"
 import { useAppContext } from "../context/Context";
 import { Loader } from "../components";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 export default function AddStudentPage() {
   const [formData, setFormData] = useState({
     studentId: 0,
     studentName: "",
   });
-  const {addStudent, loading} = useAppContext()
+  const [previousStudent, setPreviousStudent] = useState(undefined);
+
+  const {addStudent, loading, getRecords} = useAppContext()
   const handleChange = (e)=>{
     setFormData({...formData, [e.target.name]: e.target.value})
   }
@@ -15,7 +19,11 @@ export default function AddStudentPage() {
   const handleSubmit = (e)=>{
     e.preventDefault();
     
-    addStudent(formData.studentName, formData.studentId)
+    addStudent(formData.studentName, formData.studentId).then(()=>{
+      toast.success("Student Added Successfully!");
+      setPreviousStudent({name: formData.studentName, id: formData.studentId});
+      getRecords();
+    })
 
     setFormData({
         studentId:0,
@@ -63,6 +71,13 @@ export default function AddStudentPage() {
                 "Add+"
             }
             </button>
+            {
+              previousStudent !== undefined &&
+              <Link to={`/upload/${previousStudent.id}`} className="text-[#1D4ED8]">
+                {`Click here to add courses attended by ${previousStudent.name}`}
+              </Link>
+              
+            }
         </form>
         
         <img src="/enter-grade.svg" alt="Enter Grade" className="w-[30vw] hidden md:block"/>
