@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 // import { truncateStr } from "../utils/truncateStr";
 import { useAppContext } from "../context/Context";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ showConnectModal }) => {
   const { wallet, resetWallet} = useAppContext();
@@ -46,13 +47,16 @@ const Navbar = ({ showConnectModal }) => {
       <ul
         ref={navRef}
         className={
-          (toggleValue && "nav__links nav__links--expanded") || "nav__links"
+          (toggleValue && "nav__links nav__links--expanded !text-sm") || "nav__links !text-sm"
         }
       >
+        <Link to="/view">View</Link>
+        <Link to="/upload">Upload</Link>
         <a
           href={"https://moi.technology"}
           target="_blank"
           rel="noopener noreferrer"
+          className="text-center"
         >
           Built on MOI
         </a>
