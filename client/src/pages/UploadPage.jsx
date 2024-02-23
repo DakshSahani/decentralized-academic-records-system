@@ -23,16 +23,16 @@ export default function UploadPage() {
         :        
         <div className="flex justify-between items-start">
 
-          <div className="hidden md:block">
-            <div className="left-2 top-20 flex flex-col gap-16">
-              <Link to="/upload/add" className="bg-primary p-2 px-2.5 rounded-lg text-white text-center">
+          {/* <div className=""> */}
+            <div className="hidden h-full md:block sticky left-0 top-[20vh] flex flex-col gap-16 border rounded-3xl border-black p-10">
+              <img className="md:w-[20vw] lg:w-[25vw] mb-16" src="/select-student.svg" alt="Add Student" />
+              <Link to="/upload/add" className="w-full bg-primary p-2 px-2.5 rounded-lg text-white text-center">
                 Add student +
               </Link>
-              <img className="md:w-[30vw] lg:w-[35vw] " src="/select-student.svg" alt="Add Student" />
             </div>
-          </div>
+          {/* </div> */}
 
-          <div className="flex flex-col gap-4 basis-1/2">
+          <div className="flex flex-col gap-4 basis-[60%]">
             <div className="w-full p-2 flex justify-between items-center gap-2 bg-primary border-primary rounded-xl text-white ">
               <img src="/Search.svg" className="w-12 h-12 bg-primary rounded-l-xl" alt="search" />
               <FilterByNameAndId setLocalRecords={setLocalRecords} className="basis-[80%]" />
