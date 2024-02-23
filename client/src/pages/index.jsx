@@ -7,6 +7,7 @@ import SharedLayout from "./SharedLayout";
 import StudentPage from "./StudentPage";
 import UploadPage from "./UploadPage";
 import ViewPage from "./ViewPage";
+import LandingPage from "./LandingPage"
 
 export {
     AddStudentPage,
@@ -17,5 +18,6 @@ export {
     UploadPage, 
     ViewPage, 
     ProtectedPage, 
-    CoursesPage
+    CoursesPage,
+    LandingPage
 };

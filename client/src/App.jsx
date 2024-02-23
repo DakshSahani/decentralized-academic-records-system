@@ -4,12 +4,12 @@ import {
   SharedLayout, 
   UploadPage, 
   ViewPage, 
-  ProtectedPage, 
-  HomePage, 
+  ProtectedPage,
   StudentPage, 
   AddStudentPage, 
   CoursesPage,
   NotFoundPage, 
+  LandingPage
 }  from "./pages";
 import { ContextProvider } from "./context/Context";
 
@@ -20,8 +20,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SharedLayout />} > 
-            <Route index element={<HomePage />} />
-
+            <Route index element={<LandingPage />} />
             <Route path="view" element={<Outlet />} >
               <Route index element={<ViewPage />} />
               <Route path=":studentId" element={<CoursesPage showStudentName/>} />
