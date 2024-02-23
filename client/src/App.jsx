@@ -21,22 +21,17 @@ function App() {
         <Routes>
           <Route path="/" element={<SharedLayout />} > 
             <Route index element={<LandingPage />} />
-            <Route path="view" element={<Outlet />} >
-              <Route index element={<ViewPage />} />
-              <Route path=":studentId" element={<CoursesPage showStudentName/>} />
-            </Route>
 
-            <Route 
-              path="upload"
-              element={
-                <ProtectedPage>
-                  <Outlet />
-                </ProtectedPage>
-              } 
-            >
+            <Route path="records" element={<Outlet />}>
               <Route index element={<UploadPage />} />
-              <Route path="add" element={<AddStudentPage />} />
-              <Route path=":studentId" element={<StudentPage />} />
+              <Route path="add" element={
+                <ProtectedPage>
+                  <AddStudentPage />
+                </ProtectedPage>} />
+              <Route path=":studentId" element={
+                <ProtectedPage>
+                  <StudentPage />
+                </ProtectedPage>} />
             </Route>
 
           </Route>

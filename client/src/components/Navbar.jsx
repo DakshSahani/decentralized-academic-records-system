@@ -50,8 +50,7 @@ const Navbar = ({ showConnectModal }) => {
           (toggleValue && "nav__links nav__links--expanded !text-sm") || "nav__links !text-sm"
         }
       >
-        <Link to="/view">View</Link>
-        <Link to="/upload">Upload</Link>
+        <Link to="/records">Add Records</Link>
         <a
           href={"https://moi.technology"}
           target="_blank"

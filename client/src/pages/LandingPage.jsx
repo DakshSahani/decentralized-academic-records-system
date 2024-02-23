@@ -13,7 +13,7 @@ export default function LandingPage(){
             </p>
             <button 
                 className="connect-button !mx-0 hover:bg-[#1d4ed8]"
-                onClick={()=>navigate("/upload")}
+                onClick={()=>navigate("/records")}
             >
                 Get Started
             </button>
