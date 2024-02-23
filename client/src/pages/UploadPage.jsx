@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import {ListComponent, Loader} from "../components"
+import { ListComponent, Loader, SearchFilter } from "../components"
 import { useAppContext } from "../context/Context"
-import SearchFilter from "../components/SearchFilter"
+import { Link } from "react-router-dom";
 
 export default function UploadPage() {
-  let {loading, records} = useAppContext()
+  let {loading, records} = useAppContext();
   const [localRecords, setLocalRecords] = useState(records)
   
   useEffect(()=>{
@@ -19,16 +19,23 @@ export default function UploadPage() {
   }
   
   return (
-    <div className="w-[98%] flex justify-between px-[30px] relative">
-        <div className="hidden md:block">
-            <div className="pt-[2vh] sticky left-2 top-32 flex flex-col gap-16">
-                <h3 className="m-0 ">Select Student</h3>
-                <img className="md:w-[30vw] lg:w-[35vw] " src="/select-student.svg" alt="select student" />
-            </div>
+    <div className="w-full flex flex-col justify-between px-[2rem] relative">
+      {
+        loading
+        ?
+        <div className="w-[80%] mt-8 w-full flex justify-center items-center">
+          <Loader loading={loading} size={"2rem"} color="black"/>
         </div>
-        {loading?
-          <div className="w-[80%] mt-8 w-full flex justify-center items-center">
-            <Loader loading={loading} size={"2rem"} color="black"/>
+        :        
+        <div className="flex justify-between items-start">
+
+          <div className="hidden md:block">
+            <div className="left-2 top-20 flex flex-col gap-16">
+              <Link to="/upload/add" className="bg-primary p-2 px-2.5 rounded-lg text-white text-center">
+                Add student +
+              </Link>
+              <img className="md:w-[30vw] lg:w-[35vw] " src="/select-student.svg" alt="Add Student" />
+            </div>
           </div>
           :
           <div className="md:w-[55%] flex flex-col items-center">
@@ -58,8 +65,9 @@ export default function UploadPage() {
                   )
                 }
             </ul>
+          </div>
         </div>
-        }
+      }
     </div>
   )
 }

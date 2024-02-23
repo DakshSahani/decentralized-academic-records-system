@@ -1,12 +1,13 @@
 import AddStudentPage from "./AddStudentPage";
+import CoursesPage from "./CoursesPage";
 import HomePage from "./HomePage";
 import NotFoundPage from "./NotFoundPage";
+import ProtectedPage from "./ProtectedPage";
 import SharedLayout from "./SharedLayout";
 import StudentPage from "./StudentPage";
 import UploadPage from "./UploadPage";
 import ViewPage from "./ViewPage";
-import ProtectedPage from "./ProtectedPage";
-import CoursesPage from "./CoursesPage"
+
 export {
     AddStudentPage,
     HomePage, 
