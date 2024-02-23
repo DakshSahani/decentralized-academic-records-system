@@ -44,7 +44,7 @@ export const ContextProvider = ({children})=>{
     }
 
     const isSet = (name, value)=>{
-        if(value==undefined || value===""){
+        if(value===undefined || value===""){
             setError(`${name} is not defined.`);
             return false;
         } 
@@ -143,6 +143,7 @@ export const ContextProvider = ({children})=>{
                 }
             })
         }).catch((err)=>console.log(err))
+    // eslint-disable-next-line
     }, [states.wallet]);
 
     return (
