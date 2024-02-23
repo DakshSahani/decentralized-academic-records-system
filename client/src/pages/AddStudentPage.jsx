@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useAppContext } from "../context/Context";
 import { Loader } from "../components";
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 export default function AddStudentPage() {
@@ -19,10 +18,11 @@ export default function AddStudentPage() {
   const handleSubmit = (e)=>{
     e.preventDefault();
     
-    addStudent(formData.studentName, formData.studentId).then(()=>{
-      toast.success("Student Added Successfully!");
-      setPreviousStudent({name: formData.studentName, id: formData.studentId});
-      getRecords();
+    addStudent(formData.studentName, formData.studentId).then((res)=>{
+      if(res != null){
+        setPreviousStudent({name: formData.studentName, id: formData.studentId});
+        getRecords();
+      }
     })
 
     setFormData({

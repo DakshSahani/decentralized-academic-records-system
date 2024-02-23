@@ -11,14 +11,10 @@ export default function UploadPage() {
     setLocalRecords(records);
   },[records]);
 
-  const searchByName = (name)=>{
-    const re = new RegExp(name, 'i')
-    const temp = records.filter(el=> re.test(el.studentName))
-    setLocalRecords(temp)
-  }
-  const searchById = (id)=>{
-    const re = new RegExp(id, 'i')
-    const temp = records.filter(el=> re.test(el.studentId.toString()))
+  const search = (value)=>{
+    const reName = new RegExp(value.studentName, 'i')
+    const reId = new RegExp(value.studentId, 'i')
+    const temp = records.filter(el=>( reName.test(el.studentName) && reId.test(el.studentId.toString()) ))
     setLocalRecords(temp)
   }
   
@@ -37,8 +33,12 @@ export default function UploadPage() {
           :
           <div className="md:w-[55%] flex flex-col items-center">
             <form className="w-full">
-              <SearchFilter classNames="w-full mb-2" searchFunc={searchByName} label="Student Name"/>
-              <SearchFilter classNames="w-full" searchFunc={searchById} label="Student Id"/>
+              <SearchFilter 
+                classNames="w-full mb-2"
+                searchFunc={search} 
+                labels={["Student Name", "studentId"]}
+                names={["studentName", "studentId"]}
+              />
             </form>
             <ul className="w-full mt-4">
                 <ListComponent

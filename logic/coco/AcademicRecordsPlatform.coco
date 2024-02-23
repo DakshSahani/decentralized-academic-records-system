@@ -4,6 +4,7 @@ coco AcademicRecordsPlatform
 // Declare Persistent State
 state persistent:
     records []Record
+    studentIds Map[U64]Bool
     admin Address
 
 // Declare Record Class
@@ -36,6 +37,13 @@ endpoint invokable AddRecord!(studentName String, studentId U64)->(addedRecord R
     //Check if studentName is valid
     if studentName=="":
         throw "Student Name is not valid"
+    
+    observe studentIds <- AcademicRecordsPlatform.State.studentIds:
+        if studentIds[studentId]?:
+            throw "StudentId already exists"
+    
+    mutate studentIds <- AcademicRecordsPlatform.State.studentIds:
+        studentIds[studentId] = true
     
     mutate records <- AcademicRecordsPlatform.State.records:
         var newRecord = Record{recordId: len(records), studentName: studentName, studentId:studentId}
