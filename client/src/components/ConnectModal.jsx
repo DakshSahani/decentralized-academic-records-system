@@ -51,6 +51,7 @@ const ConnectModal = ({ isModalOpen, showConnectModal }) => {
         title="Enter Mnemonic"
         open={isModalOpen}
         onOk={() => handleConnect(mnemonic)}
+        okButtonProps={{ style: { backgroundColor: "#2563eb",} }} 
         onCancel={handleCancel}
         destroyOnClose={true}
       >
