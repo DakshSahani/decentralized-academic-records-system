@@ -7,6 +7,7 @@ import {
     SET_LOADING, 
     SET_RECORDS, 
 } from "./action";
+import toast from "react-hot-toast";
 import logic from "../interface/logic";
 
 
@@ -51,18 +52,12 @@ export const ContextProvider = ({children})=>{
         return true;
     }
     const setWallet = (wallet, addToLocalStorage=false)=>{
-        // console.log(wallet);
-        // if(addToLocalStorage) 
-        //     localStorage.setItem("wallet", JSON.stringify(wallet));
-
         dispatch({
             type: SET_WALLET,
             payload: {wallet,}
         })
-        // Wallet to store in local storage ???
     };
     const resetWallet = ()=>{
-        // localStorage.removeItem("wallet");
         dispatch({
             type: RESET_WALLET,
         })
@@ -105,17 +100,20 @@ export const ContextProvider = ({children})=>{
 
     const addStudent = async (studentName, studentId)=>{ // Adding student
         setLoading();
-        if(!isSet("student name", studentName) || !isSet("student-id", studentId)) {
-            return null;
-        }
         try {
+            if(!isSet("student name", studentName) || !isSet("student-id", studentId)) {
+                throw new Error("student-id or student name is missing")
+            }
             if(!states.wallet) throw new Error("Not Login!");
             const res = await logic.addRecord(states.wallet, studentName, studentId);
             resetLoading();
+            
+            toast.success("Student Added Successfully!");
             return res;
         } catch(err) {  
             setError(err.message || err);
             resetLoading();
+            return null
         }
     }
 
