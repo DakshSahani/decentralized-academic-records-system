@@ -21,7 +21,6 @@ export default function AddStudentPage() {
     addStudent(formData.studentName, formData.studentId).then((res)=>{
       if(res != null){
         setPreviousStudent({name: formData.studentName, id: formData.studentId});
-        getRecords();
       }
     })
 

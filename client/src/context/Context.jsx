@@ -44,9 +44,8 @@ export const ContextProvider = ({children})=>{
         });
     }
 
-    const isSet = (name, value)=>{
+    const isSet = (value)=>{
         if(value===undefined || value===""){
-            setError(`${name} is not defined.`);
             return false;
         } 
         return true;
@@ -101,11 +100,14 @@ export const ContextProvider = ({children})=>{
     const addStudent = async (studentName, studentId)=>{ // Adding student
         setLoading();
         try {
-            if(!isSet("student name", studentName) || !isSet("student-id", studentId)) {
+            if(!isSet( states.wallet))
+                throw "Account is not set"
+            if(!isSet(studentName) || !isSet(studentId)) {
                 throw new Error("student-id or student name is missing")
             }
             if(!states.wallet) throw new Error("Not Login!");
             const res = await logic.addRecord(states.wallet, studentName, studentId);
+            await getRecords()
             resetLoading();
             
             toast.success("Student Added Successfully!");
@@ -118,11 +120,20 @@ export const ContextProvider = ({children})=>{
     }
 
     const addCourse = async(recordId, courseName, grade)=>{
-        if(!isSet("grade", grade) || !isSet("course-name", courseName) || !isSet("record-id", recordId)) 
-            return;
         setLoading();
         try {
+            if(!isSet(states.wallet))
+                throw "accoutn not found"
+            if(!isSet(grade) || !isSet(courseName) || !isSet(recordId))
+                throw "course name or grade is not valid"
+            if(recordId>=states.records.length)
+                throw "Invalid student in selected"
+            for(let key of states.records[recordId]?.courses.keys()){
+                if(key.toLowerCase() === courseName.toLowerCase())
+                    throw "student's courseName already exits in records"
+            }
             const res = await logic.addCourse(states.wallet,recordId, courseName, grade);
+            await getRecords()
             resetLoading();
             return res;
         } catch(err) {

@@ -3,11 +3,9 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import {
   SharedLayout, 
   UploadPage, 
-  ViewPage, 
   ProtectedPage,
   StudentPage, 
-  AddStudentPage, 
-  CoursesPage,
+  AddStudentPage,
   NotFoundPage, 
   LandingPage
 }  from "./pages";

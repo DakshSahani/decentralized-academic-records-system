@@ -2,17 +2,18 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import {useAppContext} from "../context/Context"
 import { Loader } from "../components";
-import CoursePage from "./CoursesPage"
+import CourseTable from "./CoursesTable"
+import NotFoundPage from "./NotFoundPage";
 
 export default function StudentPage() {
   const { studentId: id } = useParams();
-  const {records:students, addCourse, loading} = useAppContext()
+  const {records, addCourse, loading, wallet} = useAppContext()
 
   const [student ,setStudent] = useState({})
   useEffect(()=>{
-      setStudent(students.find((s)=>s.studentId === id*1))
+      setStudent(records.find((s)=>s.studentId === id*1))
       // eslint-disable-next-line
-  },[])
+  },[records])
 
   const [formData, setFormData] = useState({
     courseName: "",
@@ -30,11 +31,13 @@ export default function StudentPage() {
         grade:0
     })
   }
-
+  if(loading) return <Loader loading={loading} color="black" size="2rem"/>
+  if(!student)return <NotFoundPage />
   return (
     <div className="w-full h-full flex items-center justify-between gap-8 px-8">
         <div>
             <h2 className="">Add New Course</h2>
+            {wallet?
             <form className="border border-gray-600 rounded-3xl p-8 py-10 flex flex-col gap-6">
                 <div className="flex flex-col md:flex-row justify-between">
                     <p className="text-2xl ">{student?.studentName}</p>
@@ -78,9 +81,15 @@ export default function StudentPage() {
                     "Submit"}
                 </button>
             </form>
+            :
+            <div className="border border-gray-600 rounded-3xl p-8">
+                <h2 className="my-2">Login to add</h2>
+                <img src="/please-login.svg" alt="Please Login" className="w-[75vw] sm:w-[45vw] md:w-[35vw]"/>
+            </div>
+            }
         </div>
         
-        <CoursePage />
+        <CourseTable />
     </div>
   )
 }

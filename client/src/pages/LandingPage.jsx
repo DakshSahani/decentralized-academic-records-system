@@ -18,6 +18,6 @@ export default function LandingPage(){
                 Get Started
             </button>
         </div>
-        <img className="h-[65vh]" src="./moi_landingPage.svg" alt="landing page image"/>        
+        <img className="h-[65vh]" src="./moi_landingPage.svg" alt="landing page"/>        
     </div> 
 }

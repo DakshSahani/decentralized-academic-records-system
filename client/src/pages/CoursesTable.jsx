@@ -9,7 +9,9 @@ export default function CoursesPage({showStudentName}){
   const {records, loading} = useAppContext()
 
   if(loading){
-    return <Loader loading={loading} size={"2rem"} color="black"/>
+    return <div className="w-[80%] text-center">
+      <Loader loading={loading} size={"2rem"} color="black"/>
+    </div>
   }
   if(records.length === 0){
     return <NotFoundPage />
