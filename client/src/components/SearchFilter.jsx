@@ -18,7 +18,9 @@ export default function SearchFilter({
   const debounce = ()=>{
     let timeOutId;
     return (e)=>{
+      let previousState;
       setState(prev =>{
+        previousState = prev
         return {
           ...prev,
           [e.target.name]:e.target.value
@@ -27,16 +29,16 @@ export default function SearchFilter({
 
       clearTimeout(timeOutId);
       timeOutId = setTimeout(()=>{
+        // console.log(state)
         searchFunc({
-          ...state,
+          ...previousState,
           [e.target.name]:e.target.value
         });
       }, 900);
     }
   }
 
-  const optimizedDebounce = useMemo(()=>
-      debounce()
+  const optimizedDebounce = useMemo(()=>debounce()
   // eslint-disable-next-line
   , []);
 

@@ -28,10 +28,7 @@ function App() {
                 <ProtectedPage>
                   <AddStudentPage />
                 </ProtectedPage>} />
-              <Route path=":studentId" element={
-                <ProtectedPage>
-                  <StudentPage />
-                </ProtectedPage>} />
+              <Route path=":studentId" element={<StudentPage />} />
             </Route>
 
           </Route>
