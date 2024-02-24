@@ -10,7 +10,7 @@ export default function AddStudentPage() {
   });
   const [previousStudent, setPreviousStudent] = useState(undefined);
 
-  const {addStudent, loading, getRecords} = useAppContext()
+  const {addStudent, loading} = useAppContext()
   const handleChange = (e)=>{
     setFormData({...formData, [e.target.name]: e.target.value})
   }

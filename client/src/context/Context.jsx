@@ -101,7 +101,7 @@ export const ContextProvider = ({children})=>{
         setLoading();
         try {
             if(!isSet( states.wallet))
-                throw "Account is not set"
+                throw new Error("Account is not set");
             if(!isSet(studentName) || !isSet(studentId)) {
                 throw new Error("student-id or student name is missing")
             }
@@ -123,14 +123,14 @@ export const ContextProvider = ({children})=>{
         setLoading();
         try {
             if(!isSet(states.wallet))
-                throw "accoutn not found"
+                throw new Error("accoutn not found");
             if(!isSet(grade) || !isSet(courseName) || !isSet(recordId))
-                throw "course name or grade is not valid"
+                throw new Error("course name or grade is not valid");
             if(recordId>=states.records.length)
-                throw "Invalid student in selected"
+                throw new Error("Invalid student in selected");
             for(let key of states.records[recordId]?.courses.keys()){
                 if(key.toLowerCase() === courseName.toLowerCase())
-                    throw "student's courseName already exits in records"
+                    throw new Error("student's courseName already exits in records");
             }
             const res = await logic.addCourse(states.wallet,recordId, courseName, grade);
             await getRecords()
