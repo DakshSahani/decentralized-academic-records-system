@@ -14,7 +14,7 @@ export default function SharedLayout() {
 
   useEffect(()=>{
     if(error) {
-      toast(errorMessage, {
+      toast.error(errorMessage, {
         duration: 3000,
       });
     }

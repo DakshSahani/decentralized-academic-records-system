@@ -2,10 +2,12 @@ import {useNavigate} from "react-router-dom"
 
 export default function LandingPage(){
     const navigate = useNavigate()
-
-    return <div className="w-full px-9 flex gap-8 justify-between items-center">
+    return (
+    <div className="w-full px-9 flex gap-8 justify-between items-center">
         <div className="w-[40vw]">
-            <h1 className="text-3xl">Verified your Academic records with ease</h1>
+            <h1 className="text-5xl uppercase">
+                <span className="text-primary">Verified</span> your Academic records with <span>ease.</span>
+            </h1>
             <p className="my-8">
                 Introducing a decenteralized academic records system based on MOI technology.
                 Institutes can upload their students data and courses attended by them.
@@ -20,4 +22,5 @@ export default function LandingPage(){
         </div>
         <img className="h-[65vh]" src="./moi_landingPage.svg" alt="landing page"/>        
     </div> 
+    );
 }

@@ -50,6 +50,7 @@ export const ContextProvider = ({children})=>{
         } 
         return true;
     }
+    
     const setWallet = (wallet, addToLocalStorage=false)=>{
         dispatch({
             type: SET_WALLET,
@@ -123,14 +124,14 @@ export const ContextProvider = ({children})=>{
         setLoading();
         try {
             if(!isSet(states.wallet))
-                throw new Error("accoutn not found");
+                throw new Error("Account not found");
             if(!isSet(grade) || !isSet(courseName) || !isSet(recordId))
-                throw new Error("course name or grade is not valid");
+                throw new Error("Course name or grade is not valid");
             if(recordId>=states.records.length)
-                throw new Error("Invalid student in selected");
+                throw new Error("Invalid student is selected");
             for(let key of states.records[recordId]?.courses.keys()){
                 if(key.toLowerCase() === courseName.toLowerCase())
-                    throw new Error("student's courseName already exits in records");
+                    throw new Error(`${courseName} course already exits in records`);
             }
             const res = await logic.addCourse(states.wallet,recordId, courseName, grade);
             await getRecords()

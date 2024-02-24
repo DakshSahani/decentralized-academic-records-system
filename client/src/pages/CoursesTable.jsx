@@ -4,7 +4,7 @@ import NotFoundPage from "./NotFoundPage";
 import {Loader} from "../components"
 
 
-export default function CoursesPage({showStudentName}){
+export default function CoursesPage(){
   const { studentId } = useParams();
   const {records, loading} = useAppContext()
 
@@ -24,7 +24,7 @@ export default function CoursesPage({showStudentName}){
     let i = 0
     for(let key of record?.courses.keys()){
       res.push(
-      <tr key={key} className="odd:bg-white even:bg-gray-50 border-b">
+      <tr key={key} className="odd:bg-white even:bg-gray-200 border-b">
         <td className="px-6 py-4">{++i}</td>
         <td className="px-6 py-4">{key}</td>
         <td className="px-6 py-4">{record.courses.get(key)}</td>
@@ -34,14 +34,14 @@ export default function CoursesPage({showStudentName}){
   }
 
   return ( 
-    <div className="w-[90%] border border-black rounded-xl p-8">
-      {showStudentName && <div className="mb-8">
-        <h3>Student Id : {record.studentId}</h3>
-        <h3>Student Name: {record.studentName}</h3>
-      </div>}
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <>
+      <div className="w-full mb-8">
+        <h3><span className="text-primary">Student Id : </span>{record.studentId}</h3>
+        <h3><span className="text-primary">Student Name: </span>{record.studentName}</h3>
+      </div>
+      <div className="w-full relative overflow-x-auto border-2 border-gray-200 sm:rounded-lg">
         <table className="w-full text-md text-left rtl:text-right text-gray-500">
-          <thead className="text-md text-gray-700 uppercase bg-gray-50">
+          <thead className="text-md text-gray-700 uppercase bg-gray-200">
               <tr>
                   <th scope="col" className="px-6 py-3">
                       S.No.
@@ -61,6 +61,6 @@ export default function CoursesPage({showStudentName}){
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 }

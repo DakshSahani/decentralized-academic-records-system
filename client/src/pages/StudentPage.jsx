@@ -4,38 +4,43 @@ import {useAppContext} from "../context/Context"
 import { Loader } from "../components";
 import CourseTable from "./CoursesTable"
 import NotFoundPage from "./NotFoundPage";
+import AddCourseForm from "./AddCourseForm";
 
 export default function StudentPage() {
   const { studentId: id } = useParams();
-  const {records, addCourse, loading, wallet} = useAppContext()
+  const { records, loading } = useAppContext()
 
-  const [student ,setStudent] = useState({})
+  const [student ,setStudent] = useState({});
+  const [showAddCourseForm, setShowAddCourseForm] = useState(false);
+
   useEffect(()=>{
       setStudent(records.find((s)=>s.studentId === id*1))
       // eslint-disable-next-line
   },[records])
 
-  const [formData, setFormData] = useState({
-    courseName: "",
-    grade: 0,
-  });
-  const handleChange = (e)=>{
-    setFormData({...formData, [e.target.name]: e.target.value})
-  }
-
-  const handleSubmit = async (e)=>{
-    e.preventDefault()
-    await addCourse(student.recordId, formData.courseName, formData.grade)
-    setFormData({
-        courseName:"",
-        grade:0
-    })
-  }
   if(loading) return <Loader loading={loading} color="black" size="2rem"/>
-  if(!student)return <NotFoundPage />
+  if(!student) return <NotFoundPage />
+
   return (
-    <div className="w-full h-full flex items-center justify-between gap-8 px-8">
-        <div>
+    <div className="w-full px-[2rem] flex flex-justify-between gap-4 md:gap-8">
+        {
+            showAddCourseForm &&
+            <AddCourseForm student={student}/>
+        }
+
+        <div className="w-full p-8 mb-4 flex flex-col items-center bg-gray-50 shadow-md">
+            <CourseTable />
+            <button 
+                className="bg-primary text-white rounded-lg p-2 mt-8"
+                onClick={()=>setShowAddCourseForm(!showAddCourseForm)}
+            > 
+                Add Course
+            </button>
+        </div>
+    </div>
+  )
+}
+        {/* <div>
             <h2 className="">Add New Course</h2>
             {wallet?
             <form className="border border-gray-600 rounded-3xl p-8 py-10 flex flex-col gap-6">
@@ -87,9 +92,4 @@ export default function StudentPage() {
                 <img src="/please-login.svg" alt="Please Login" className="w-[75vw] sm:w-[45vw] md:w-[35vw]"/>
             </div>
             }
-        </div>
-        
-        <CourseTable />
-    </div>
-  )
-}
+        </div> */}
