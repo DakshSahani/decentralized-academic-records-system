@@ -45,12 +45,9 @@ export default function UploadPage() {
               </div>
     
               <ul className="mt-4">
-                <ListComponent 
-                  heading="Add a new Student+"
-                  id=""
-                  add
-                  to={`/records/add}`}
-                />
+                <Link to="/records/add" className="block lg:hidden w-full bg-primary p-2 mb-4 rounded-lg text-base sm:text-xl md:text-2xl text-white text-center hover:scale-[1.04]">
+                  Add a new student +
+                </Link>
                 {
                   localRecords?.map((student, indx)=>
                     <ListComponent 
