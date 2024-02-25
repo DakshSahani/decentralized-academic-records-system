@@ -1,15 +1,15 @@
-import AutoTypeText from "./AutoTypeText";
 import ConnectModal from "./ConnectModal";
 import ListComponent from "./ListComponent";
 import SearchFilter from "./SearchFilter"
 import Loader from "./Loader"
+import LoadingWrapper from "./LoadingWrapper";
 import Navbar from "./Navbar";
 
 export {
-    AutoTypeText,
     ConnectModal, 
     ListComponent, 
     SearchFilter,
     Loader, 
+    LoadingWrapper, 
     Navbar, 
 }

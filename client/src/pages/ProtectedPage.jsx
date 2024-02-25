@@ -1,5 +1,5 @@
 import { useAppContext } from "../context/Context";
-import { AutoTypeText } from "../components";
+import { ReactTyped } from "react-typed";
 
 export default function ProtectedPage({children, condition=undefined}) {
   const { wallet } = useAppContext();
@@ -11,7 +11,11 @@ export default function ProtectedPage({children, condition=undefined}) {
   return (
     <section className="w-full h-full flex flex-col gap-12 justify-around items-center">
       <div className="w-fit min-w-[30vw]">
-        <AutoTypeText text="Please Login to Proceed." className="pl-8 text-4xl font-bold text-center w-full" focusIndx={1}/>
+        <ReactTyped 
+          className="pl-8 text-4xl font-bold text-center w-full" 
+          strings={["Please <span style='color:  #2563eb;'>Login</span> to Proceed."]}
+          typeSpeed={35}
+        />
       </div>
       <img src="/please-login.svg" alt="Please Login" className="w-[75vw] sm:w-[45vw] md:w-[35vw]"/>
     </section>

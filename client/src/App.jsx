@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   SharedLayout, 
   UploadPage, 
@@ -20,12 +20,16 @@ function App() {
           <Route path="/" element={<SharedLayout />} > 
             <Route index element={<LandingPage />} />
 
-            <Route path="records" element={<Outlet />}>
+            <Route path="records">
               <Route index element={<UploadPage />} />
-              <Route path="add" element={
-                <ProtectedPage>
-                  <AddStudentPage />
-                </ProtectedPage>} />
+              <Route 
+                path="add" 
+                element={
+                  <ProtectedPage>
+                    <AddStudentPage />
+                  </ProtectedPage>
+                } 
+              />
               <Route path=":studentId" element={<StudentPage />} />
             </Route>
 
