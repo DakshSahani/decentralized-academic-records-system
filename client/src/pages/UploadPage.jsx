@@ -29,8 +29,8 @@ export default function UploadPage() {
         :        
         <div className="flex justify-between items-start">
 
-          <div className="hidden h-full md:block sticky left-0 top-[22vh] flex flex-col gap-16 border rounded-3xl border-black p-10">
-            <img className="md:w-[20vw] lg:w-[25vw] mb-16" src="/select-student.svg" alt="Add Student" />
+          <div className="hidden lg:block h-full sticky left-0 top-[50%] translate-y-[-45%] flex flex-col gap-16 border rounded-3xl border-black p-10">
+            <img className="w-[25vw] mb-16" src="/select-student.svg" alt="Add Student" />
             <Link to="/records/add" className="w-full bg-primary p-2 px-2.5 rounded-lg text-white text-center hover:scale-[1.04]">
               Add student +
             </Link>

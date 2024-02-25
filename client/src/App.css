@@ -140,7 +140,7 @@ header {
 .navbar {
   background-color: white;
   position: sticky;
-  padding: 2rem;
+  padding-inline: 2rem;
   padding-inline: 6vw;
   top: 0;
   margin-bottom: 20px;
@@ -192,7 +192,7 @@ header {
   color: black;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 920px) {
   .navbar__logo {
     font-size: 40px;
   }
@@ -293,7 +293,7 @@ header {
   background-color: #1d4ed8; /* Darker green color on hover, you can change this */
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 920px) {
   .navbar .connect-button {
     height: 60px;
   }

@@ -41,7 +41,7 @@ const Navbar = ({ showConnectModal }) => {
           <div></div>
         </div>
         <div className="navbar__logo leading-[1em]" href="/">
-          <span className="text-[#1D4ED8]">Academic Record</span> System
+          <Link to="/" className="text-[#1D4ED8]">Academic Record</Link> System
         </div>
       </div>
       <ul
