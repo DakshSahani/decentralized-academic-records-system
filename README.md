@@ -29,10 +29,19 @@ Adding Courses:** Admins can add new courses to a student's record by clicking o
 - **Trust and Authenticity:** Cryptographic signatures provide a secure method for verifying the authenticity of documents, enhancing trust in the academic record system.
 
 ## Screenshots
+- **Landing Page**
 <img width="949" alt="6" src="https://github.com/DakshSahani/decenteralized-educational-records-app/assets/124420043/e6d9899b-e157-48a0-942b-a2cdac7cff19">
+
+- **Home / Main Page**
 <img width="951" alt="2" src="https://github.com/DakshSahani/decenteralized-educational-records-app/assets/124420043/b16d92ef-65a1-4d58-b26b-ee55a1fe4fbf">
+
+- **Authentication Prompt**
 <img width="951" alt="3" src="https://github.com/DakshSahani/decenteralized-educational-records-app/assets/124420043/b8b9b8c2-2b1a-42bf-905e-cc67916853b0">
+
+- **Add Student**
 <img width="948" alt="4" src="https://github.com/DakshSahani/decenteralized-educational-records-app/assets/124420043/96a61023-c21b-42e6-8256-e70c9c852a3f">
+
+- **Add Courses**
 <img width="948" alt="5" src="https://github.com/DakshSahani/decenteralized-educational-records-app/assets/124420043/b02b83db-c216-42e1-99a3-31f1e12a1e52">
 
 ## Future Enhancements
