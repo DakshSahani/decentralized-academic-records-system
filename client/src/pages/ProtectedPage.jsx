@@ -15,6 +15,7 @@ export default function ProtectedPage({children, condition=undefined}) {
           className="pl-8 text-4xl font-bold text-center w-full flex items-end" 
           strings={["Please <span style='color:  #2563eb;'>Login</span> to Proceed."]}
           typeSpeed={35}
+          showCursor={false}
         />
       </div>
       <img src="/please-login.svg" alt="Please Login" className="w-[75vw] sm:w-[45vw] md:w-[35vw]"/>
