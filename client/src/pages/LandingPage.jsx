@@ -3,9 +3,9 @@ import { ReactTyped } from "react-typed";
 
 export default function LandingPage(){
     return (
-    <div className="w-full px-9 flex gap-8 justify-between items-center">
-        <div className="w-[40vw]">
-            <h1 className="text-5xl uppercase">
+    <div className="w-full px-4 sm:px-9 flex gap-8 justify-between items-center">
+        <div className="w-full lg:w-[40vw]">
+            <h1 className="text-4xl md:text-5xl uppercase">
                 <span className="text-primary">Verify</span> 
                 {" "}your Academic records with{" "}
                 <div style={{content:"transparency"}}>
@@ -26,7 +26,7 @@ export default function LandingPage(){
             </p>
             <Link to="/records" className="connect-button !mx-0 hover:bg-[#1d4ed8]">Get Started</Link>
         </div>
-        <img className="h-[65vh]" src="./moi_landingPage.svg" alt="landing page"/>        
+        <img className="w-[36vw] hidden lg:block" src="./moi_landingPage.svg" alt="landing page"/>        
     </div> 
     );
 }
