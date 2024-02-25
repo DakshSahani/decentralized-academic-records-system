@@ -149,7 +149,7 @@ export const ContextProvider = ({children})=>{
             dispatch({
                 type:SET_RECORDS,
                 payload:{
-                    records:res
+                    records: res
                 }
             })
         }).catch((err)=>console.log(err))

@@ -4,7 +4,7 @@ import { useAppContext } from "../context/Context"
 import { Link } from "react-router-dom";
 
 export default function UploadPage() {
-  let {loading, records} = useAppContext();
+  let { loading, records } = useAppContext();
   const [localRecords, setLocalRecords] = useState(records)
   
   useEffect(()=>{
@@ -38,7 +38,7 @@ export default function UploadPage() {
 
           <div className="flex flex-col gap-2 basis-[60%]">
             <div className="w-full p-2 flex justify-between items-center gap-2 bg-primary border-primary rounded-xl text-white ">
-              <img src="/Search.svg" className="w-8 h-8 mr-2 bg-primary rounded-l-xl" alt="search" />
+              <img src="/search.svg" className="w-8 h-8 mr-2 bg-primary rounded-l-xl" alt="search" />
               <form className="w-full p-1">
                 <SearchFilter 
                   classNames="w-full"

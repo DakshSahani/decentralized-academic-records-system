@@ -1,10 +1,10 @@
 import { useAppContext } from "../context/Context";
 import { AutoTypeText } from "../components";
 
-export default function ProtectedPage({children}) {
+export default function ProtectedPage({children, condition=undefined}) {
   const { wallet } = useAppContext();
 
-  if(wallet) {
+  if(condition === undefined ? wallet : condition) {
     return children;
   }
 

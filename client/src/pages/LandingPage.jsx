@@ -6,7 +6,7 @@ export default function LandingPage(){
     <div className="w-full px-9 flex gap-8 justify-between items-center">
         <div className="w-[40vw]">
             <h1 className="text-5xl uppercase">
-                <span className="text-primary">Verified</span> your Academic records with <span>ease.</span>
+                <span className="text-primary">Verified</span> your Academic records with <span className="text-primary">ease.</span>
             </h1>
             <p className="my-8">
                 Introducing a decenteralized academic records system based on MOI technology.

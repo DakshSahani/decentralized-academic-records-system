@@ -72,7 +72,7 @@ export default function AddStudentPage() {
             </button>
             {
               previousStudent !== undefined &&
-              <Link to={`/upload/${previousStudent.id}`} className="text-[#1D4ED8]">
+              <Link to={`/records/${previousStudent.id}`} className="text-[#1D4ED8]">
                 {`Click here to add courses attended by ${previousStudent.name}`}
               </Link>
               
