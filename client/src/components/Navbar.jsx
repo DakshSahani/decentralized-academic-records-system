@@ -40,8 +40,14 @@ const Navbar = ({ showConnectModal }) => {
           <div></div>
           <div></div>
         </div>
-        <div className="navbar__logo leading-[1em]" href="/">
-          <span className="text-[#1D4ED8]">Academic Record</span> System
+        <div className="navbar__logo leading-[1em] flex gap-4 items-center" href="/">
+          <Link to="/">
+            <img src="/logo.svg" alt="logo" className="w-12 h-12"/>
+          </Link>
+          <div className="flex flex-col text-2xl gap-[-10px]">
+            <div>Decentralized Academic </div>
+            <div>Record System</div>
+          </div>
         </div>
       </div>
       <ul
@@ -51,6 +57,7 @@ const Navbar = ({ showConnectModal }) => {
         }
       >
         <Link to="/records">Add Records</Link>
+        <Link to="/records/add">Add Student</Link>
         <a
           href={"https://moi.technology"}
           target="_blank"

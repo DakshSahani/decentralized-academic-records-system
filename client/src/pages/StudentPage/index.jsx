@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import {useAppContext} from "../context/Context"
-import { LoadingWrapper } from "../components";
-import CourseTable from "./CoursesTable"
-import NotFoundPage from "./NotFoundPage";
+import {useAppContext} from "../../context/Context"
+import { LoadingWrapper } from "../../components";
 import AddCourseForm from "./AddCourseForm";
-import WentWrongPage from "./WentWrongPage"
+import CourseTable from "./CoursesTable";
+import { NotFoundPage, ProtectedPage } from "../";
 import { motion } from "framer-motion";
-import ProtectedPage from "./ProtectedPage";
 
 export default function StudentPage() {
   const { studentId: id } = useParams();
@@ -21,7 +19,6 @@ export default function StudentPage() {
       // eslint-disable-next-line
   },[records])
     
-  if(!records) return <WentWrongPage />
   if(!student) return <NotFoundPage />
 
   const variants = {
@@ -29,7 +26,7 @@ export default function StudentPage() {
     visible: {width: "30vw", height: "100%", opacity: 1},
   }
   return (
-    <LoadingWrapper>
+    <LoadingWrapper condition={records === undefined}>
     <ProtectedPage condition={!showAddCourseForm || wallet}>
         <div className={`w-full px-[2rem] flex flex-col-reverse lg:flex-row items-center lg:justify-between ${showAddCourseForm ? "lg:gap-24": ""}`}>
             <motion.div
