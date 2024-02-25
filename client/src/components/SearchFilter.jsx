@@ -6,6 +6,7 @@ export default function SearchFilter({
     searchFunc, 
     labels, 
     names, 
+    inputClassNames,
     ...rest
 }){
   
@@ -47,7 +48,7 @@ export default function SearchFilter({
       {
         names.map((el, ind)=>
           <Input
-            className="border border-black rounded-xl"
+            className={`text-sm sm:text-base border border-black rounded-xl min-w-40 sm:min-w-52 ${inputClassNames}`}
             onChange={optimizedDebounce}
             name={el}
             value={state[el]}

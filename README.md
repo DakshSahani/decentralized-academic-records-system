@@ -8,13 +8,18 @@ Implementing a decentralized academic record system using blockchain technology 
 
 ## How it Works
 
-1. **Blockchain Infrastructure:** Utilize a blockchain network where all academic records are securely stored in a decentralized manner.
-2. **Student Authentication:** Students can log in to the system using their unique identifiers (such as student IDs) and upload their government-issued ID documents for verification.
-3. **Universities/Institute Verification:** Educational institutes responsible for issuing ID documents can verify the authenticity of student-provided documents. Once verified, a cryptographic signature is generated and associated with the documents.
-4. **Document Storage:** The university can upload student records in the form of PDFs to the blockchain. These records are encrypted and stored securely, ensuring privacy and data integrity.
-5. **Smart Contract Logic:** Smart contracts govern access to academic records. Only authorized parties, such as students, university administrators, and designated third parties (e.g., employers or credential evaluators), can access specific records based on predefined permissions.
-6. **Access Control:** Students can view their own records, while university staff can manage and update records. Third parties requiring verification can request access to specific records, which are granted upon approval by the student or university.
-7. **Verification Process:** Third-party verifiers can authenticate student records by accessing the blockchain and verifying the cryptographic signatures associated with each document. This ensures the integrity and authenticity of the records.
+**Viewing Records:** Anyone can view records using IDs like 101, 102, etc.
+
+**Uploading Records:** To upload records, use a specific mnemonic. Otherwise, you'll receive a "Not an admin" message.
+
+**Admin Operations:** On the main page, admins can:
+
+**Add a new student**
+**View student records**
+**Search for students by ID or name
+Adding Courses:** Admins can add new courses to a student's record by clicking on the courses in the student entry. Here, they can input the course name and grades received.
+
+**Adding Students:** When adding a student, you'll be prompted to log in if you haven't already. Then, you can add the student's ID and name to the records.
 
 ## Benefits
 
