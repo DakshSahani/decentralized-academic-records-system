@@ -30,12 +30,12 @@ export default function StudentPage() {
     <ProtectedPage condition={!showAddCourseForm || wallet}>
         <div className={`w-full px-[2rem] flex flex-col-reverse lg:flex-row items-center lg:justify-between ${showAddCourseForm ? "lg:gap-24": ""}`}>
             <motion.div
-                className={`${showAddCourseForm ? "block" : "hidden"} p-4 flex items-center justify-center lg:justify-start`}
+                className={`${showAddCourseForm ? "block" : "hidden"} add-course-form py-4 lg:p-4 flex items-center justify-center lg:justify-start`}
                 variants={variants}
                 initial="invisible"
                 animate={ showAddCourseForm ? "visible" : "invisible" }
             >
-                <AddCourseForm student={student} setShowAddCourseForm={setShowAddCourseForm} />
+                <AddCourseForm student={student} showAddCourseForm={showAddCourseForm} setShowAddCourseForm={setShowAddCourseForm} />
             </motion.div>
 
             <div className="w-full p-8 mb-4 flex flex-col items-center bg-gray-50 shadow-md">

@@ -305,4 +305,7 @@ header {
     height: 81vh;
     top: 19vh;
   }
+  .add-course-form{
+    width: 100% !important;
+  }
 }

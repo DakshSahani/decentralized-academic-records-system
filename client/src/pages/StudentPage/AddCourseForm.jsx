@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAppContext } from '../../context/Context';
 import { Loader } from '../../components';
 
-export default function AddCourseForm({student, setShowAddCourseForm}) {
+export default function AddCourseForm({student, showAddCourseForm, setShowAddCourseForm}) {
   const { addCourse, loading } = useAppContext();
 
   const [formData, setFormData] = useState({
@@ -22,13 +22,13 @@ export default function AddCourseForm({student, setShowAddCourseForm}) {
     })
   }
   return (
-    <form className="border border-gray-600 rounded-3xl p-6 py-8 flex flex-col gap-6 relative">
+    <form className={`${showAddCourseForm ? "block" : "hidden"} w-[80vw] sm:w-fit border border-gray-600 rounded-3xl p-6 py-8 flex flex-col gap-6 relative`}>
       <h2 className="w-full text-center text-primary">Add New Course</h2>
 
       <div className="w-full flex gap-8">
-        <label htmlFor="courseName" className="min-w-[9vw] text-md md:text-lg">Course Name:</label>
+        <label htmlFor="courseName" className="sm:min-w-[9vw] text-sm md:text-lg">Course Name:</label>
         <input 
-          className="text-black px-2 py-1.5 border border-gray-500 rounded outline-none"
+          className="w-[175px] sm:w-fulll text-black px-2 py-1.5 border border-gray-500 rounded outline-none"
           type="text" 
           name="courseName" 
           value={formData.courseName} 
@@ -37,9 +37,9 @@ export default function AddCourseForm({student, setShowAddCourseForm}) {
       </div>
 
       <div className="w-full flex gap-8">
-        <label htmlFor="grade" className="min-w-[9vw] text-md md:text-lg">Grade: </label>
+        <label htmlFor="grade" className="sm:min-w-[9vw] text-sm md:text-lg">Grade: </label>
         <input 
-          className="w-full text-black px-2 py-1.5 border border-gray-500 rounded outline-none min-w-40" 
+          className="w-full text-black px-2 py-1.5 border border-gray-500 rounded outline-none sm:min-w-40" 
           type="number" 
           name="grade" 
           min="0"
