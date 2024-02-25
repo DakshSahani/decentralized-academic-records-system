@@ -23,12 +23,12 @@ export default function AddCourseForm({student, showAddCourseForm, setShowAddCou
   }
   return (
     <form className={`${showAddCourseForm ? "block" : "hidden"} w-[80vw] sm:w-fit border border-gray-600 rounded-3xl p-6 py-8 flex flex-col gap-6 relative`}>
-      <h2 className="w-full text-center text-primary">Add New Course</h2>
+      <h2 className="w-full !text-lg sm:!text-2xl text-center text-primary">Add New Course</h2>
 
-      <div className="w-full flex gap-8">
+      <div className="flex gap-8">
         <label htmlFor="courseName" className="sm:min-w-[9vw] text-sm md:text-lg">Course Name:</label>
         <input 
-          className="w-[175px] sm:w-fulll text-black px-2 py-1.5 border border-gray-500 rounded outline-none"
+          className="overflow-hidden text-black px-2 py-1.5 border border-gray-500 rounded outline-none"
           type="text" 
           name="courseName" 
           value={formData.courseName} 
