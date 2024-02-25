@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useAppContext } from '../context/Context';
-import { Loader } from '../components';
+import { useAppContext } from '../../context/Context';
+import { Loader } from '../../components';
 
 export default function AddCourseForm({student, setShowAddCourseForm}) {
   const { addCourse, loading } = useAppContext();
@@ -26,7 +26,7 @@ export default function AddCourseForm({student, setShowAddCourseForm}) {
       <h2 className="w-full text-center text-primary">Add New Course</h2>
 
       <div className="w-full flex gap-8">
-        <label htmlFor="courseName" className="min-w-[9vw] text-lg">Course Name:</label>
+        <label htmlFor="courseName" className="min-w-[9vw] text-md md:text-lg">Course Name:</label>
         <input 
           className="text-black px-2 py-1.5 border border-gray-500 rounded outline-none"
           type="text" 
@@ -37,7 +37,7 @@ export default function AddCourseForm({student, setShowAddCourseForm}) {
       </div>
 
       <div className="w-full flex gap-8">
-        <label htmlFor="grade" className="min-w-[9vw] text-lg">Grade: </label>
+        <label htmlFor="grade" className="min-w-[9vw] text-md md:text-lg">Grade: </label>
         <input 
           className="w-full text-black px-2 py-1.5 border border-gray-500 rounded outline-none min-w-40" 
           type="number" 

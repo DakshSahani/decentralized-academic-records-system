@@ -204,8 +204,8 @@ header {
   .nav__links {
     position: absolute;
     flex-direction: column;
-    height: calc(100vh - 62.65px);
-    top: 62.65px;
+    height: 85vh;
+    top: 15vh;
     left: -500px;
     font-weight: bold;
     color: black;
@@ -296,5 +296,13 @@ header {
 @media screen and (max-width: 920px) {
   .navbar .connect-button {
     height: 60px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .nav__links {
+    width: 100vw;
+    height: 81vh;
+    top: 19vh;
   }
 }

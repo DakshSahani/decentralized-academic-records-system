@@ -18,7 +18,7 @@ export const initialStates = {
     errorMessage: undefined,
     wallet: undefined,
     loading: false,
-    records: [],
+    records: undefined,
 }
 
 export const ContextProvider = ({children})=>{
@@ -27,7 +27,7 @@ export const ContextProvider = ({children})=>{
     const resetError = () => {
         dispatch({
             type: SET_ERROR,
-            payload: {error: false}
+            payload: {error: false, message: states.errorMessage}
         })
     }
     const setError = (message) => {
@@ -123,6 +123,7 @@ export const ContextProvider = ({children})=>{
     const addCourse = async(recordId, courseName, grade)=>{
         setLoading();
         try {
+            if(!isSet(states.records)) throw new Error("Something went wrong!")
             if(!isSet(states.wallet))
                 throw new Error("Account not found");
             if(!isSet(grade) || !isSet(courseName) || !isSet(recordId))

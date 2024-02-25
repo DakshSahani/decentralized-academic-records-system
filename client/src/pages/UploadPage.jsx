@@ -14,12 +14,12 @@ export default function UploadPage() {
   const search = (value)=>{
     const reName = new RegExp(value.studentName, 'i')
     const reId = new RegExp(value.studentId, 'i')
-    const temp = records.filter(el=>( reName.test(el.studentName) && reId.test(el.studentId.toString()) ))
+    const temp = records?.filter(el=>( reName.test(el.studentName) && reId.test(el.studentId.toString()) ))
     setLocalRecords(temp)
   }
   
   return (
-    <LoadingWrapper>
+    <LoadingWrapper condition={records===undefined}>
       <div className="w-full flex flex-col justify-between px-[2rem] relative">    
           <div className="flex justify-between items-stretch">
             <div className="hidden lg:block">

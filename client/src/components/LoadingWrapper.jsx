@@ -1,10 +1,10 @@
 import { useAppContext } from "../context/Context";
 import Loader from "./Loader";
 
-export default function LoadingWrapper({children}) {
+export default function LoadingWrapper({children, condition=false}) {
   const { loading } = useAppContext();
 
-  if(loading) {
+  if(loading || condition) {
     return (
       <div className="w-full mt-8 flex justify-center items-center">
         <Loader loading={loading} size={"2rem"} color="black"/>

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import {useAppContext} from "../context/Context"
-import NotFoundPage from "./NotFoundPage";
-import {Loader} from "../components"
+import {useAppContext} from "../../context/Context"
+import NotFoundPage from "../NotFoundPage";
+import {Loader} from "../../components"
 
 
 export default function CoursesPage(){
@@ -13,7 +13,7 @@ export default function CoursesPage(){
       <Loader loading={loading} size={"2rem"} color="black"/>
     </div>
   }
-  if(records.length === 0){
+  if(!records || records.length === 0){
     return <NotFoundPage />
   }
 
