@@ -12,7 +12,7 @@ export default function ProtectedPage({children, condition=undefined}) {
     <section className="w-full h-full flex flex-col gap-12 justify-around items-center">
       <div className="w-fit min-w-[30vw]">
         <ReactTyped 
-          className="pl-8 text-4xl font-bold text-center w-full" 
+          className="pl-8 text-4xl font-bold text-center w-full flex items-end" 
           strings={["Please <span style='color:  #2563eb;'>Login</span> to Proceed."]}
           typeSpeed={35}
         />
