@@ -25,9 +25,9 @@ export default function CoursesPage(){
     for(let key of record?.courses.keys()){
       res.push(
       <tr key={key} className="odd:bg-white even:bg-gray-200 border-b">
-        <td className="px-6 py-4">{++i}</td>
-        <td className="px-6 py-4">{key}</td>
-        <td className="px-6 py-4">{record.courses.get(key)}</td>
+        <td className="px-3 py-3 sm:px-6 sm:py-4">{++i}</td>
+        <td className="px-3 py-3 sm:px-6 sm:py-4">{key}</td>
+        <td className="px-3 py-3 sm:px-6 sm:py-4">{record.courses.get(key)}</td>
       </tr>)
     }
     return res
@@ -36,20 +36,20 @@ export default function CoursesPage(){
   return ( 
     <>
       <div className="w-full mb-8">
-        <h3><span className="text-primary">Student Id : </span>{record.studentId}</h3>
-        <h3><span className="text-primary">Student Name: </span>{record.studentName}</h3>
+        <h3 className="!text-lg md:!text-2xl"><span className="text-primary">Student Id : </span>{record.studentId}</h3>
+        <h3 className="!text-lg md:!text-2xl"><span className="text-primary">Student Name: </span>{record.studentName}</h3>
       </div>
       <div className="w-full relative overflow-x-auto border-2 border-gray-200 sm:rounded-lg">
         <table className="w-full text-md text-left rtl:text-right text-gray-500">
-          <thead className="text-md text-gray-700 uppercase bg-gray-200">
+          <thead className="text-sm sm:text-base text-gray-700 uppercase bg-gray-200">
               <tr>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-2 sm:px-6 sm:py-3">
                       S.No.
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-2 sm:px-6 sm:py-3">
                       Courses
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-3 py-2 sm:px-6 sm:py-3">
                       Grades
                   </th>
               </tr>

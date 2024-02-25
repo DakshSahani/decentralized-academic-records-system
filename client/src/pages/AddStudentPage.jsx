@@ -31,27 +31,27 @@ export default function AddStudentPage() {
   }
 
   return (
-    <div className="w-full h-full flex items-center justify-around">
-        <form className="border border-gray-600 rounded-3xl p-2 py-4 md:p-8 md:py-10 flex flex-col gap-4 md:gap-8" onSubmit={handleSubmit}>
+    <div className="w-full h-full px-4 sm:px-8 flex items-center justify-around">
+        <form className="w-full lg:w-auto border border-gray-600 rounded-3xl p-2 py-4 md:p-8 md:py-10 flex flex-col gap-4 md:gap-8" onSubmit={handleSubmit}>
             
             <div className="flex flex-col md:flex-row justify-between">
-                <p className="text-lg md:text-2xl ">Add a Studnet</p>
+                <p className="text-lg md:text-2xl ">Add a Student</p>
             </div>
 
-            <div className="flex gap-8">
+            <div className="flex gap-8 justify-between lg:justify-start">
                 <label htmlFor="courseName" className="min-w-[9vw] text-md md:text-lg">Student Id:</label>
                 <input 
-                    className="text-black px-2 py-1.5 border border-gray-500 rounded outline-none"
+                    className="w-[50vw] lg:w-auto text-black px-2 py-1.5 border border-gray-500 rounded outline-none"
                     type="number" 
                     name="studentId" 
                     value={formData.studentId} 
                     onChange={handleChange} 
                 />
             </div>
-            <div className="flex gap-8">
+            <div className="flex gap-8 justify-between lg:justify-start">
                 <label htmlFor="grade" className="min-w-[9vw] text-md md:text-lg">Student Name: </label>
                 <input 
-                    className="text-black px-2 py-1.5 border border-gray-500 rounded outline-none" 
+                    className="w-[50vw] lg:w-auto text-black px-2 py-1.5 border border-gray-500 rounded outline-none" 
                     type="text" 
                     name="studentName" 
                     value={formData.studentName} 
@@ -79,7 +79,7 @@ export default function AddStudentPage() {
             }
         </form>
         
-        <img src="/enter-grade.svg" alt="Enter Grade" className="w-[30vw] hidden md:block"/>
+        <img src="/enter-grade.svg" alt="Enter Grade" className="w-[30vw] hidden lg:block"/>
     </div>
   )
 }
