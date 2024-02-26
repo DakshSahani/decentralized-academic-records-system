@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-// import { truncateStr } from "../utils/truncateStr";
+import { truncateStr } from "../utils/truncateStr";
 import { useAppContext } from "../context/Context";
 import { Link } from "react-router-dom";
 
@@ -72,10 +72,9 @@ const Navbar = ({ showConnectModal }) => {
         >
           {
             wallet 
-            // && wallet.getAddress
+            && wallet.getAddress
             ? 
-            // `Disconnect: ${wallet && truncateStr(wallet?.getAddress(), 11)}`
-            "Disconnect"
+            `Disconnect: ${wallet && truncateStr(wallet?.getAddress(), 11)}`
             : "Connect"
           }
         </button>
