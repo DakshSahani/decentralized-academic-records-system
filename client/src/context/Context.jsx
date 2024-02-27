@@ -134,6 +134,8 @@ export const ContextProvider = ({children})=>{
                 throw new Error("Account not found");
             if(!isSet(grade) || !isSet(courseName) || !isSet(recordId))
                 throw new Error("Course name or grade is not valid");
+            if(grade < 0 || grade > 100) 
+                throw new Error("Invalid value of grade");
             if(recordId >= states.records.length)
                 throw new Error("Invalid student is selected");
             for(let key of states.records[recordId]?.courses.keys()){
