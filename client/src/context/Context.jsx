@@ -6,6 +6,7 @@ import {
     RESET_WALLET, 
     SET_LOADING, 
     SET_RECORDS, 
+    SET_ADMIN, 
 } from "./action";
 import toast from "react-hot-toast";
 import logic from "../interface/logic";
@@ -19,6 +20,7 @@ export const initialStates = {
     wallet: undefined,
     loading: false,
     records: undefined,
+    admin: false, 
 }
 
 export const ContextProvider = ({children})=>{
@@ -51,7 +53,7 @@ export const ContextProvider = ({children})=>{
         return true;
     }
     
-    const setWallet = (wallet, addToLocalStorage=false)=>{
+    const setWallet = (wallet)=>{
         dispatch({
             type: SET_WALLET,
             payload: {wallet,}
@@ -145,15 +147,37 @@ export const ContextProvider = ({children})=>{
         }
     }
 
+    const setAdmin = async (wallet)=>{
+        setLoading();
+        let res;
+        try {
+            if(!isSet(wallet)) throw new Error("Connect using your mnemonic!");
+
+            res = await logic.isAdmin(wallet);
+            dispatch({
+                type: SET_ADMIN,
+                payload: {admin: res}, 
+            })
+        } catch(err) {
+            setError(err.message || err);
+            res = false;
+        }
+        resetLoading()
+        return res;
+    }
+
     useEffect(()=>{
-        getRecords().then((res) =>{
+        getRecords()
+        .then((res) =>{
             dispatch({
                 type:SET_RECORDS,
                 payload:{
                     records: res
                 }
             })
-        }).catch((err)=>console.log(err))
+        })
+        .catch(err=>setError(err.message));
+
     // eslint-disable-next-line
     }, [states.wallet]);
 
@@ -170,6 +194,7 @@ export const ContextProvider = ({children})=>{
                 getRecords,
                 addStudent, 
                 addCourse, 
+                setAdmin, 
             }}
         >
             {children}

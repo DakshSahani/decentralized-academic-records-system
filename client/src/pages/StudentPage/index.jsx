@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 export default function StudentPage() {
   const { studentId: id } = useParams();
-  const { records, wallet } = useAppContext()
+  const { records, wallet, admin } = useAppContext()
   
   const [student ,setStudent] = useState({});
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
@@ -17,8 +17,13 @@ export default function StudentPage() {
   useEffect(()=>{
       setStudent(records?.find((s)=>s.studentId === id*1))
       // eslint-disable-next-line
-  },[records])
-    
+  },[records]);
+  
+  useEffect(()=>{
+    if(!wallet || !admin) setShowAddCourseForm(false);
+    // eslint-disable-next-line
+  }, [wallet]);
+
   if(!student) return <NotFoundPage />
 
   const variants = {
@@ -27,7 +32,7 @@ export default function StudentPage() {
   }
   return (
     <LoadingWrapper condition={records === undefined}>
-    <ProtectedPage condition={!showAddCourseForm || wallet}>
+    <ProtectedPage condition={!showAddCourseForm || wallet} adminCondition={!showAddCourseForm || admin}>
         <div className={`w-full px-4 sm:px-8 flex flex-col-reverse lg:flex-row items-center lg:justify-between ${showAddCourseForm ? "lg:gap-24": ""}`}>
             <motion.div
                 className={`${showAddCourseForm ? "!flex" : "hidden"} add-course-form py-4 lg:p-4 flex items-center justify-center lg:justify-start`}
@@ -51,7 +56,7 @@ export default function StudentPage() {
                     }
             </div>
         </div>
-        </ProtectedPage>
+    </ProtectedPage>
     </LoadingWrapper>
   );
 }

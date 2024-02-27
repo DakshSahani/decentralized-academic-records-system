@@ -1,13 +1,17 @@
 import { useAppContext } from "../context/Context";
 import { ReactTyped } from "react-typed";
+import NotAnAdminPage from "./NotAnAdminPage";
 
-export default function ProtectedPage({children, condition=undefined}) {
-  const { wallet } = useAppContext();
+export default function ProtectedPage({children, condition=undefined, adminCondition=undefined}) {
+  const { wallet, admin } = useAppContext();
 
+  
   if(condition === undefined ? wallet : condition) {
-    return children;
+    if(adminCondition === undefined ? admin : adminCondition) 
+      return children;
+    else 
+      return <NotAnAdminPage />
   }
-
   return (
     <section className="w-full h-full flex flex-col gap-12 justify-around items-center">
       <div className="w-fit min-w-[30vw]">
@@ -20,6 +24,6 @@ export default function ProtectedPage({children, condition=undefined}) {
       </div>
       <img src="/please-login.svg" alt="Please Login" className="w-[75vw] sm:w-[45vw] md:w-[35vw]"/>
     </section>
-  );
+  );    
 }
 

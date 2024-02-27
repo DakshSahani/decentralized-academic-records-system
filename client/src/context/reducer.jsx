@@ -4,6 +4,7 @@ import {
     RESET_WALLET, 
     SET_LOADING,
     SET_RECORDS, 
+    SET_ADMIN, 
 } from "./action";
 
 export default function reducer(states, action) {
@@ -42,6 +43,12 @@ export default function reducer(states, action) {
         return {
             ...states,
             records: action.payload.records,
+        }
+    }
+    if(action.type === SET_ADMIN) {
+        return {
+            ...states,
+            admin: action.payload.admin, 
         }
     }
     throw new Error("No Such action in ChangesReducer");
