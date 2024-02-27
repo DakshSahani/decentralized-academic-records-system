@@ -7,6 +7,7 @@ import {
     SET_LOADING, 
     SET_RECORDS, 
     SET_ADMIN, 
+    SET_LOGIN_LOADING, 
 } from "./action";
 import toast from "react-hot-toast";
 import logic from "../interface/logic";
@@ -19,6 +20,7 @@ export const initialStates = {
     errorMessage: undefined,
     wallet: undefined,
     loading: false,
+    loginLoading: false, 
     records: undefined,
     admin: false, 
 }
@@ -26,16 +28,8 @@ export const initialStates = {
 export const ContextProvider = ({children})=>{
     const [states, dispatch] = useReducer(reducer, initialStates);
     
-    const resetError = () => {
-        dispatch({
-            type: SET_ERROR,
-            payload: {error: false, message: states.errorMessage}
-        })
-    }
     const setError = (message) => {
         if(!message) message = "Something went wrong";
-
-        setTimeout(()=>resetError(), 3000);
 
         dispatch({
             type: SET_ERROR,
@@ -44,6 +38,13 @@ export const ContextProvider = ({children})=>{
                 message, 
             }
         });
+
+        setTimeout(()=>{
+            dispatch({
+                type: SET_ERROR,
+                payload: {error: false, message: states.errorMessage}
+            })
+        }, 3000);
     }
 
     const isSet = (value)=>{
@@ -62,6 +63,10 @@ export const ContextProvider = ({children})=>{
     const resetWallet = ()=>{
         dispatch({
             type: RESET_WALLET,
+        })
+        dispatch({ 
+            type: SET_ADMIN,
+            payload: {admin: false}
         })
     }
 
@@ -88,20 +93,20 @@ export const ContextProvider = ({children})=>{
 
     const getRecords = async ()=>{
         setLoading();
+        let res = undefined;
         try {
-            const res = await logic.getRecords();
+            res = await logic.getRecords();
             setRecords(res);
-            resetLoading();
-            return res;
         } catch(err) {
             setError(err.message || err);
-            resetLoading();
-            return null;
         }
+        resetLoading();
+        return res;
     }
 
     const addStudent = async (studentName, studentId)=>{ // Adding student
         setLoading();
+        let res = undefined;
         try {
             if(!isSet( states.wallet))
                 throw new Error("Account is not set");
@@ -109,46 +114,49 @@ export const ContextProvider = ({children})=>{
                 throw new Error("student-id or student name is missing")
             }
             if(!states.wallet) throw new Error("Not Login!");
-            const res = await logic.addRecord(states.wallet, studentName, studentId);
+            res = await logic.addRecord(states.wallet, studentName, studentId);
             await getRecords()
-            resetLoading();
             
             toast.success("Student Added Successfully!");
-            return res;
         } catch(err) {  
             setError(err.message || err);
-            resetLoading();
-            return null
         }
+        resetLoading();
+        return res;
     }
 
     const addCourse = async(recordId, courseName, grade)=>{
         setLoading();
+        let res = undefined;
         try {
             if(!isSet(states.records)) throw new Error("Something went wrong!")
             if(!isSet(states.wallet))
                 throw new Error("Account not found");
             if(!isSet(grade) || !isSet(courseName) || !isSet(recordId))
                 throw new Error("Course name or grade is not valid");
-            if(recordId>=states.records.length)
+            if(recordId >= states.records.length)
                 throw new Error("Invalid student is selected");
             for(let key of states.records[recordId]?.courses.keys()){
                 if(key.toLowerCase() === courseName.toLowerCase())
                     throw new Error(`${courseName} course already exits in records`);
             }
-            const res = await logic.addCourse(states.wallet,recordId, courseName, grade);
+            res = await logic.addCourse(states.wallet,recordId, courseName, grade);
             await getRecords()
-            resetLoading();
-            return res;
         } catch(err) {
             setError(err.message || err);
-            resetLoading();
-            return null;
         }
+        resetLoading();
+        return res;
     }
 
+    const setLoginLoading = (loading=false)=>{
+        dispatch({
+            type: SET_LOGIN_LOADING, 
+            payload: loading, 
+        })
+    }
     const setAdmin = async (wallet)=>{
-        setLoading();
+        setLoginLoading(true);
         let res;
         try {
             if(!isSet(wallet)) throw new Error("Connect using your mnemonic!");
@@ -162,7 +170,7 @@ export const ContextProvider = ({children})=>{
             setError(err.message || err);
             res = false;
         }
-        resetLoading()
+        setLoginLoading(false);
         return res;
     }
 
@@ -170,7 +178,7 @@ export const ContextProvider = ({children})=>{
         getRecords()
         .then((res) =>{
             dispatch({
-                type:SET_RECORDS,
+                type: SET_RECORDS,
                 payload:{
                     records: res
                 }
@@ -179,14 +187,13 @@ export const ContextProvider = ({children})=>{
         .catch(err=>setError(err.message));
 
     // eslint-disable-next-line
-    }, [states.wallet]);
+    }, []);
 
     return (
         <context.Provider
             value={{
                 ...states,
                 setError,
-                resetError,
                 setWallet,
                 resetWallet, 
                 setLoading,

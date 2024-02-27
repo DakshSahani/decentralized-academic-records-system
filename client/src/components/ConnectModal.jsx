@@ -7,7 +7,7 @@ const provider = new VoyageProvider("babylon");
 const account = "m/44'/6174'/7020'/0/0"; // 0th account path derivation
 
 const ConnectModal = ({ isModalOpen, showConnectModal }) => {
-  const { setWallet, setAdmin, loading } = useAppContext();
+  const { setWallet, setAdmin, loginLoading } = useAppContext();
   const [mnemonic, setMnemonic] = useState("");
   const [error, setError] = useState("");
 
@@ -19,8 +19,7 @@ const ConnectModal = ({ isModalOpen, showConnectModal }) => {
 
       const wallet = new Wallet(provider);
       await wallet.fromMnemonic(mnemonic, account);
-      const res = await setAdmin(wallet);
-      console.log(res);
+      await setAdmin(wallet);
       setWallet(wallet);
       showConnectModal(false);
       
@@ -43,9 +42,8 @@ const ConnectModal = ({ isModalOpen, showConnectModal }) => {
         okButtonProps={{ style: { backgroundColor: "#2563eb",} }} 
         onCancel={handleCancel}
         destroyOnClose={true}
-        confirmLoading={loading}
+        confirmLoading={loginLoading}
       >
-        {/* {loading && <p style={{ color: "red"}}>loading...</p>} */}
         <Input
           style={{ border: "1px solid black" }}
           onChange={(e) => setMnemonic(e.target.value)}

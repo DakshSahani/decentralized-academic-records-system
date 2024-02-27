@@ -56,8 +56,8 @@ const Navbar = ({ showConnectModal }) => {
           (toggleValue && "nav__links nav__links--expanded !text-sm") || "nav__links !text-sm"
         }
       >
-        <Link onClick={()=>setToggle(false)} to="/records">Add Records</Link>
-        <Link onClick={()=>setToggle(false)} to="/records/add">Add Student</Link>
+        <Link className="text-center" onClick={()=>setToggle(false)} to="/records">Add Records</Link>
+        <Link className="text-center" onClick={()=>setToggle(false)} to="/records/add">Add Student</Link>
         <a
           href={"https://moi.technology"}
           target="_blank"

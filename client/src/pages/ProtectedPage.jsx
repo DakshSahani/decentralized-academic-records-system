@@ -1,6 +1,6 @@
 import { useAppContext } from "../context/Context";
 import { ReactTyped } from "react-typed";
-import NotAnAdminPage from "./NotAnAdminPage";
+import { NotAnAdminPage } from "./";
 
 export default function ProtectedPage({children, condition=undefined, adminCondition=undefined}) {
   const { wallet, admin } = useAppContext();

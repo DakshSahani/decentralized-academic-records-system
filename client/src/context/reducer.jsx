@@ -5,6 +5,7 @@ import {
     SET_LOADING,
     SET_RECORDS, 
     SET_ADMIN, 
+    SET_LOGIN_LOADING, 
 } from "./action";
 
 export default function reducer(states, action) {
@@ -51,5 +52,11 @@ export default function reducer(states, action) {
             admin: action.payload.admin, 
         }
     }
-    throw new Error("No Such action in ChangesReducer");
+    if(action.type === SET_LOGIN_LOADING) {
+        return {
+            ...states,
+            loginLoading: action.payload,
+        }
+    }
+    console.log("No Such action!");
 }

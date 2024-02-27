@@ -33,12 +33,12 @@ export default function StudentPage() {
   return (
     <LoadingWrapper condition={records === undefined}>
     <ProtectedPage condition={!showAddCourseForm || wallet} adminCondition={!showAddCourseForm || admin}>
-        <div className={`w-full px-4 sm:px-8 flex flex-col-reverse lg:flex-row items-center lg:justify-between ${showAddCourseForm ? "lg:gap-24": ""}`}>
+        <div className={`w-full px-4 sm:px-8 flex flex-col-reverse lg:flex-row items-center lg:justify-between ${showAddCourseForm && admin? "lg:gap-24": ""}`}>
             <motion.div
-                className={`${showAddCourseForm ? "!flex" : "hidden"} add-course-form py-4 lg:p-4 flex items-center justify-center lg:justify-start`}
+                className={`${showAddCourseForm && admin ? "!flex" : "hidden"} add-course-form py-4 lg:p-4 flex items-center justify-center lg:justify-start`}
                 variants={variants}
                 initial="invisible"
-                animate={ showAddCourseForm ? "visible" : "invisible" }
+                animate={ showAddCourseForm && admin ? "visible" : "invisible" }
             >
                 <AddCourseForm student={student} showAddCourseForm={showAddCourseForm} setShowAddCourseForm={setShowAddCourseForm} />
             </motion.div>
@@ -46,7 +46,7 @@ export default function StudentPage() {
             <div className="w-full py-2 sm:p-8 mb-4 flex flex-col items-center bg-gray-50 shadow-md">
                 <CourseTable />
                     {
-                        !showAddCourseForm && 
+                        !showAddCourseForm && admin &&
                         <button 
                             className="bg-primary text-white rounded-lg p-2 mt-8"
                             onClick={()=>setShowAddCourseForm(!showAddCourseForm)}
