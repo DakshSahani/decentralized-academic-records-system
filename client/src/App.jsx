@@ -7,7 +7,8 @@ import {
   StudentPage, 
   AddStudentPage,
   NotFoundPage, 
-  LandingPage
+  LandingPage,
+  LoginPage,
 }  from "./pages";
 import { ContextProvider } from "./context/Context";
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SharedLayout />} > 
             <Route index element={<LandingPage />} />
+            <Route path="login" element={<LoginPage />}/>
               <Route path="records">
                 <Route index element={<UploadPage />} />
                 <Route 

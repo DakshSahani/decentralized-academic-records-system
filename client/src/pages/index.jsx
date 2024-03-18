@@ -5,8 +5,9 @@ import ProtectedPage from "./ProtectedPage";
 import SharedLayout from "./SharedLayout";
 import StudentPage from "./StudentPage";
 import UploadPage from "./UploadPage";
-import LandingPage from "./LandingPage"
+import LandingPage from "./LandingPage";
 import WentWrongPage from "./WentWrongPage";
+import LoginPage from "./LoginPage";
 
 export {
     AddStudentPage,
@@ -18,4 +19,5 @@ export {
     ProtectedPage, 
     LandingPage, 
     WentWrongPage, 
+    LoginPage,
 };
