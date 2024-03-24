@@ -46,7 +46,7 @@ const LoginPage = () => {
       <div className="form-container sign-up">
         <form onSubmit={handleSubmit}>
           <h1>Institute Login</h1>
-          <nospan>or use your email for registration</nospan>
+          <nospan>If you represent an Institute</nospan>
           <input
             type="text"
             name="instituteName"
@@ -75,13 +75,14 @@ const LoginPage = () => {
             onChange={handleChange}
             placeholder="Mnemonic"
           />
+          <a href="">Forgot Password?</a>
           <button>Login</button>
         </form>
       </div>
       <div className="form-container sign-in">
         <form onSubmit={handleSubmit}>
           <h1>Student Login</h1>
-          <nospan>or use your email password</nospan>
+          <nospan>If you're a student</nospan>
           <input
             type="text"
             name="instituteName"
@@ -110,7 +111,7 @@ const LoginPage = () => {
             onChange={handleChange}
             placeholder="Mnemonic"
           />
-          <a href="#">Forget Your Password?</a>
+          <a href="#">Forgot Password?</a>
           <button onClick={handleLogin}>Sign In</button>
         </form>
       </div>
