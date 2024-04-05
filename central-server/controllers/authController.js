@@ -10,5 +10,6 @@ async function logut(req, res, next){
 }
 
 async function register(req, res, next){
-    const institute = Institute.create()
+    const institute = await Institute.create(req.body)
+    res.status(201).send(institute)
 }
