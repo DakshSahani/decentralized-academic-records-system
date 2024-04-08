@@ -4,25 +4,27 @@ const recordAppManifest = require("./coco/academicrecordsplatform.json");
 
 // ------- Update with your Mnemonic ------------------ //
 const MNEMONIC = process.env.MNEMONIC;
+const accountPath = "m/44'/6174'/7020'/0/0";
 
 // JsonRpcProvider to interact with MOI Network (Here we are using public RPC from Voyage)
 const provider = new VoyageProvider("babylon");
 
 // Function to instantiate a wallet with provider and sender account
-const constructWallet = async () => {
-  const wallet = new Wallet(provider);
+// const constructWallet = async () => {
+//   const wallet = new Wallet(provider);
 
-  // The path derives your account from the mnemonic
-  const accountPath = "m/44'/6174'/7020'/0/0";
+//   // The path derives your account from the mnemonic
+//   const accountPath = "m/44'/6174'/7020'/0/0";
 
-  await wallet.fromMnemonic(MNEMONIC, accountPath);
-  return wallet;
-};
+//   await wallet.fromMnemonic(MNEMONIC, accountPath);
+//   return wallet;
+// };
 
 const deployRecordsAppLogic = async () => {
   // getting wallet To sign and send the ix to the network
-  const wallet = await constructWallet();
-
+  // const wallet = await constructWallet();
+  const wallet = await Wallet.fromMnemonic(MNEMONIC, accountPath);
+  wallet.connect(provider);
   // Create logic instance using Logic factory
   const recordsAppLogic = new LogicFactory(recordAppManifest, wallet)
   // Deploy the logic get ixResponse
@@ -46,3 +48,6 @@ const deployRecordsAppLogic = async () => {
 };
 
 deployRecordsAppLogic();
+
+
+// NEW LOGIC ID: 0x080000ddefa4e94d28c16c64480067c03ee29b16a6986d649da8de0e3c3ce3f6811349
